@@ -13,18 +13,21 @@
         compatible = "zmk,combos";
 
         backspace {
-            bindings = <&none>;
+            bindings = <&kp BACKSPACE>;
             key-positions = <10 9>;
+            layers = <0>;
         };
 
         tab {
-            bindings = <&none>;
+            bindings = <&kp TAB>;
             key-positions = <1 2>;
+            layers = <0>;
         };
 
         enter {
-            bindings = <&none>;
+            bindings = <&kp ENTER>;
             key-positions = <18 19 20>;
+            layers = <0>;
         };
     };
 
@@ -77,4 +80,5 @@
         };
     };
 };
+
 
