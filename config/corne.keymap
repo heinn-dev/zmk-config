@@ -8,26 +8,37 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+
 / {
     combos {
         compatible = "zmk,combos";
 
         backspace {
             bindings = <&kp BACKSPACE>;
-            key-positions = <10 9>;
+            key-positions = <21 22>;
             layers = <0>;
         };
 
-        tab {
-            bindings = <&kp TAB>;
+        esc {
+            bindings = <&kp ESCAPE>;
             key-positions = <1 2>;
             layers = <0>;
         };
 
         enter {
             bindings = <&kp ENTER>;
-            key-positions = <18 19 20>;
+            key-positions = <19 20>;
             layers = <0>;
+        };
+
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <13 14>;
+        };
+
+        one_hand_lyr {
+            bindings = <&tog 3>;
+            key-positions = <4 5>;
         };
     };
 
@@ -43,9 +54,9 @@
 
             bindings = <
 &none  &kp Q  &kp W  &kp E             &kp R           &kp T                 &kp Y                &kp U              &kp I            &kp O    &kp P     &none
-&none  &kp A  &kp S  &mt LEFT_ALT D    &mt LSHFT F     &mt LEFT_CONTROL G    &mt RIGHT_CONTROL H  &mt RIGHT_SHIFT J  &mt RIGHT_ALT K  &kp L    &kp SEMI  &none
+&none  &kp A  &kp S  &mt LEFT_ALT D    &mt LSHFT F     &mt LEFT_CONTROL G    &mt RIGHT_CONTROL H  &mt RIGHT_SHIFT J  &mt RIGHT_ALT K  &kp L    &kp SQT   &none
 &none  &kp Z  &kp X  &kp C             &kp V           &kp B                 &kp N                &kp M              &kp COMMA        &kp DOT  &kp FSLH  &none
-                     &kp LEFT_CONTROL  &kp LEFT_SHIFT  &kp SPACE             &mo 1                &mo 2              &kp RALT
+                     &kp LEFT_CONTROL  &kp LEFT_SHIFT  &kp SPACE             &lt 1 BACKSPACE      &mo 2              &mo 2
             >;
         };
 
@@ -72,13 +83,23 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&none  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &none
-&none  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &none
-&none  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &none
+&none  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR       &none
+&none  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp SEMICOLON  &none
+&none  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE       &none
                          &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+            >;
+        };
+
+        one_hand_left {
+            bindings = <
+&trans  &kp P      &kp O              &kp I             &kp U   &kp Y     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp PLUS   &kp L              &kp K             &kp J   &kp H     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp MINUS  &kp RIGHT_BRACKET  &kp LEFT_BRACKET  &kp M   &kp N     &trans  &trans  &trans  &trans  &trans  &trans
+                                      &trans            &trans  &trans    &trans  &trans  &trans
             >;
         };
     };
 };
+
 
 
