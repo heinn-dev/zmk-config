@@ -5,6 +5,7 @@
  */
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
 / {
@@ -56,7 +57,7 @@
   &kp Q  &kp W  &kp E           &kp R             &kp T          &kp Y            &kp U        &kp I            &kp O       &kp P
   &kp A  &kp S  &mt LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J  &mt RIGHT_ALT K  &kp L       &kp SEMICOLON
   &kp Z  &kp X  &kp C           &kp V             &kp B          &kp N            &kp M        &kp COMMA        &kp PERIOD  &kp SLASH
-                &kp ESCAPE      &mo 2             &kp SPACE      &lt 1 BACKSPACE  &mo 2        &kp DELETE
+                &kp ESCAPE      &lt 2 LEFT_WIN    &kp SPACE      &lt 1 BACKSPACE  &mo 2        &kp DELETE
             >;
         };
 
@@ -70,7 +71,7 @@
             bindings = <
   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5    &kp NUMBER_6    &kp N7        &kp N8     &kp N9         &kp N0
   &trans        &trans        &trans        &trans        &trans    &kp HOME        &kp UP_ARROW  &kp END    &kp PAGE_UP    &trans
-  &trans        &trans        &trans        &trans        &trans    &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &kp PAGE_DOWN  &trans
+  &bt BT_CLR    &trans        &trans        &trans        &trans    &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &kp PAGE_DOWN  &kp PRINTSCREEN
                               &trans        &trans        &trans    &trans          &trans        &trans
             >;
         };
