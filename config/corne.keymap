@@ -18,7 +18,7 @@
 
         enter {
             bindings = <&kp ENTER>;
-            key-positions = <15 16>;
+            key-positions = <16 17>;
             layers = <0>;
         };
 
@@ -53,9 +53,9 @@
 
             bindings = <
   &kp Q  &kp W  &kp E           &kp R             &kp T          &kp Y            &kp U        &kp I            &kp O       &kp P
-  &kp A  &kp S  &mt LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J  &mt RIGHT_ALT K  &kp L       &kp SEMICOLON
+  &kp A  &kp S  &mt LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J  &mt RIGHT_ALT K  &kp L       &kp SQT
   &kp Z  &kp X  &kp C           &kp V             &kp B          &kp N            &kp M        &kp COMMA        &kp PERIOD  &kp SLASH
-                &kp ESCAPE      &lt 2 LEFT_WIN    &kp SPACE      &lt 1 BACKSPACE  &mo 2        &kp DELETE
+                &kp ESCAPE      &lt 2 LEFT_WIN    &kp SPACE      &lt 1 BACKSPACE  &lt 2 TAB    &kp DELETE
             >;
         };
 
@@ -85,8 +85,8 @@
 
             bindings = <
   &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT    &kp CARET  &kp AMPERSAND  &kp ASTERISK      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-  &trans           &trans       &trans    &trans      &trans         &kp MINUS  &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET     &kp BACKSLASH
-  &trans           &trans       &trans    &trans      &trans         &trans     &trans         &trans            &trans                &trans
+  &trans           &trans       &trans    &trans      &trans         &kp MINUS  &kp SEMICOLON  &kp LEFT_BRACKET  &kp RIGHT_BRACKET     &kp BACKSLASH
+  &trans           &trans       &trans    &trans      &trans         &kp EQUAL  &trans         &trans            &trans                &trans
                                 &trans    &trans      &trans         &trans     &trans         &trans
             >;
         };
