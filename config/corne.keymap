@@ -44,6 +44,11 @@
             bindings = <&kp TAB>;
             key-positions = <10 11>;
         };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 1>;
+        };
     };
 
     keymap {
@@ -107,10 +112,10 @@
 
         tab {
             bindings = <
-  &kp Q  &kp W  &kp E      &kp R      &kp T             &kp N7        &kp N8        &kp N9        &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-  &kp A  &kp S  &kp D      &kp F      &kp G             &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK      &kp PLUS
-  &kp Z  &kp X  &kp C      &kp V      &mt LEFT_ALT M    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp N0            &kp MINUS
-                &kp LCTRL  &kp LSHFT  &kp SPACE         &trans        &trans        &trans
+  &kp Q  &kp W  &kp E           &kp R             &kp T             &kp Y   &kp U   &kp I      &kp O    &kp P
+  &kp A  &kp S  &kp D           &kp F             &kp G             &kp H   &kp J   &kp K      &kp L    &kp RBKT
+  &kp Z  &kp X  &kp C           &kp V             &mt LEFT_ALT M    &kp N   &kp M   &kp COMMA  &kp DOT  &kp LBKT
+                &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp SPACE         &trans  &trans  &trans
             >;
         };
 
