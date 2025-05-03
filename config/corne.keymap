@@ -43,7 +43,7 @@
 
         enter_L {
             bindings = <&kp ENTER>;
-            key-positions = <24 23>;
+            key-positions = <3 4>;
         };
     };
 
@@ -103,10 +103,10 @@
 
         FLIP {
             bindings = <
-  &kp P       &kp O    &kp I      &kp U   &kp Y     &kp C_PLAY_PAUSE   &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &trans
-  &td_scolon  &kp L    &kp K      &kp J   &kp H     &kp C_VOLUME_UP    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans
-  &kp FSLH    &kp DOT  &kp COMMA  &kp M   &kp N     &kp C_VOLUME_DOWN  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
-                       &trans     &trans  &trans    &trans             &trans          &trans
+  &kp P       &kp O    &kp I           &kp U             &kp Y          &kp C_PLAY_PAUSE   &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &trans
+  &td_scolon  &kp L    &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H    &kp C_VOLUME_UP    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans
+  &kp FSLH    &kp DOT  &kp COMMA       &kp M             &kp N          &kp C_VOLUME_DOWN  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
+                       &trans          &trans            &trans         &trans             &trans          &trans
             >;
         };
 
@@ -121,11 +121,13 @@
 
         SYM_L {
             bindings = <
-  &kp PLUS   &kp N1  &kp N2  &kp N3  &kp LBKT    &trans  &trans  &trans  &trans  &trans
-  &kp MINUS  &kp N4  &kp N5  &kp N6  &kp RBKT    &trans  &trans  &trans  &trans  &trans
-  &trans     &kp N7  &kp N8  &kp N9  &kp N0      &trans  &trans  &trans  &trans  &trans
-                     &trans  &trans  &trans      &trans  &trans  &trans
+  &kp PLUS       &kp N1  &kp N2  &kp N3  &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
+  &kp MINUS      &kp N4  &kp N5  &kp N6  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
+  &kp BACKSPACE  &kp N7  &kp N8  &kp N9  &kp N0               &trans  &trans  &trans  &trans  &trans
+                         &trans  &trans  &trans               &trans  &trans  &trans
             >;
+
+            label = "SL";
         };
     };
 };
