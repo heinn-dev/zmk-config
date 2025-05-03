@@ -94,9 +94,9 @@
 
         SYM2 {
             bindings = <
-  &kp N1           &kp N2       &kp N3          &kp N4      &kp N5                  &kp N6                 &kp N7         &kp N8           &kp N9     &kp N0
-  &trans           &kp UNDER    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp MINUS  &kp PLUS
-  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp BSLH   &kp EQUAL
+  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS       &kp PLUS
+  &kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE  &kp EQUAL
+  &trans           &trans       &trans          &trans      &trans                  &kp SEMICOLON          &kp COLON      &trans           &trans          &trans
                                 &trans          &trans      &trans                  &trans                 &trans         &trans
             >;
         };
@@ -119,7 +119,7 @@
             >;
         };
 
-        SYM_L {
+        NUM {
             bindings = <
   &kp PLUS       &kp N1  &kp N2  &kp N3  &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
   &kp MINUS      &kp N4  &kp N5  &kp N6  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
