@@ -85,18 +85,18 @@
 
         NAV2 {
             bindings = <
-  &trans          &kp HOME  &kp UP    &kp END    &kp PG_UP    &kp PRINTSCREEN  &kp HOME  &kp UP    &kp END    &kp PRINTSCREEN
-  &kp LEFT_SHIFT  &kp LEFT  &kp DOWN  &kp RIGHT  &kp PG_DN    &kp PG_DN        &kp LEFT  &kp DOWN  &kp RIGHT  &kp LSHFT
-  &kp LCTRL       &trans    &trans    &trans     &trans       &trans           &trans    &trans    &trans     &kp LCTRL
-                            &trans    &trans     &trans       &trans           &trans    &trans
+  &kp PRINTSCREEN  &kp HOME  &kp UP    &kp END    &kp PG_UP    &kp PRINTSCREEN  &kp HOME  &kp UP    &kp END    &kp PRINTSCREEN
+  &kp LEFT_SHIFT   &kp LEFT  &kp DOWN  &kp RIGHT  &kp PG_DN    &kp PG_DN        &kp LEFT  &kp DOWN  &kp RIGHT  &kp LSHFT
+  &kp LCTRL        &trans    &trans    &trans     &trans       &trans           &trans    &trans    &trans     &kp LCTRL
+                             &trans    &trans     &trans       &trans           &trans    &trans
             >;
         };
 
         SYM2 {
             bindings = <
-  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS       &kp PLUS
-  &kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE  &kp EQUAL
-  &trans           &trans       &trans          &trans      &trans                  &kp SEMICOLON          &kp COLON      &trans           &trans          &trans
+  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS         &kp PLUS
+  &kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE    &kp EQUAL
+  &trans           &trans       &trans          &trans      &trans                  &kp SEMICOLON          &kp COLON      &kp LESS_THAN    &kp GREATER_THAN  &trans
                                 &trans          &trans      &trans                  &trans                 &trans         &trans
             >;
         };
