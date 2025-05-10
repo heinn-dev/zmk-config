@@ -115,7 +115,12 @@
         nmbr_toggle: nmbr_toggle {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&tog 6 &nbmr_wrd>;
+            bindings =
+                <&macro_tap_time 1000>,
+                <&tog 6>,
+                <&macro_release>,
+                <&tog 6>;
+
             label = "NMBR_TOGGLE";
         };
     };
@@ -131,10 +136,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q  &kp W  &kp E                    &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O       &kp P
-  &kp A  &kp S  &alt_holdtap LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &kp L       &qt_cln
-  &kp Z  &kp X  &kp C                    &kp V             &lt 2 B        &kp N            &kp M         &kp COMMA                 &kp PERIOD  &bkslh_pipe
-                &lt 6 ESCAPE             &lt 4 TAB         &lt 6 SPACE    &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 LEFT_WIN
+  &kp Q  &kp W  &kp E                    &kp R                  &kp T          &kp Y            &kp U         &kp I                     &kp O       &kp P
+  &kp A  &kp S  &alt_holdtap LEFT_ALT D  &mt LEFT_SHIFT F       &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &kp L       &qt_cln
+  &kp Z  &kp X  &kp C                    &kp V                  &lt 2 B        &kp N            &kp M         &kp COMMA                 &kp PERIOD  &bkslh_pipe
+                &lt 6 ESCAPE             &tap_toggle_layer 4 6  &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 LEFT_WIN
             >;
         };
 
