@@ -22,7 +22,7 @@
 
         enter {
             bindings = <&kp ENTER>;
-            key-positions = <16 17>;
+            key-positions = <16 17 18>;
         };
 
         to_game {
@@ -31,19 +31,9 @@
             layers = <0 1>;
         };
 
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <1 0>;
-        };
-
-        esc {
-            bindings = <&kp ESCAPE>;
-            key-positions = <20 21>;
-        };
-
         enter_L {
             bindings = <&kp ENTER>;
-            key-positions = <3 4>;
+            key-positions = <11 12 13>;
         };
 
         backspace_l {
@@ -105,10 +95,10 @@
             flavor = "tap-preferred";
         };
 
-        tap_toggle_layer: tap_toggle_layer {
+        tap_hold_key: tap_hold_key {
             compatible = "zmk,behavior-hold-tap";
-            label = "TAP_TOGGLE_LAYER";
-            bindings = <&mo>, <&tog>;
+            label = "TAP_HOLD_KEY";
+            bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -141,10 +131,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q    &kp W                    &kp E                    &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z  &kp X                    &kp C                    &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &lt 6 ESCAPE             &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+  &kp Q    &kp W                    &kp E                      &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D    &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &lt 6 Z  &kp X                    &kp C                      &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                    &tap_hold_key CLCK ESCAPE  &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
@@ -159,10 +149,10 @@
 
         NAV2 {
             bindings = <
-  &trans  &trans  &trans  &trans  &trans    &kp PRINTSCREEN  &kp HOME  &kp UP    &kp END    &kp PRINTSCREEN
-  &trans  &trans  &trans  &trans  &trans    &kp PG_DN        &kp LEFT  &kp DOWN  &kp RIGHT  &kp LSHFT
-  &trans  &trans  &trans  &trans  &trans    &trans           &trans    &trans    &trans     &kp LCTRL
-                  &trans  &trans  &trans    &trans           &trans    &trans
+  &trans  &trans  &trans  &trans  &trans    &kp PAGE_UP  &kp HOME  &kp UP    &kp END    &trans
+  &trans  &trans  &trans  &trans  &trans    &kp PG_DN    &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans       &trans    &trans    &trans     &trans
+                  &trans  &trans  &trans    &trans       &trans    &trans
             >;
         };
 
@@ -195,10 +185,10 @@
 
         NUM {
             bindings = <
-  &kp MINUS      &kp N1  &kp N2  &kp N3      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
-  &kp PLUS       &kp N4  &kp N5  &kp N6      &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
-  &kp BACKSPACE  &kp N7  &kp N8  &kp N9      &kp N0               &trans  &trans  &trans  &trans  &trans
-                         &trans  &kp PERIOD  &kp SPACE            &trans  &trans  &trans
+  &kp MINUS  &kp RBKT  &kp N7         &kp N8      &kp N9    &trans  &trans  &trans  &trans  &trans
+  &kp PLUS   &kp LBKT  &kp N4         &kp N5      &kp N6    &trans  &trans  &trans  &trans  &trans
+  &trans     &kp STAR  &kp N1         &kp N2      &kp N3    &trans  &trans  &trans  &trans  &trans
+                       &kp BACKSPACE  &kp PERIOD  &kp N0    &trans  &trans  &trans
             >;
 
             label = "SL";
@@ -206,10 +196,10 @@
 
         NAV_L {
             bindings = <
-  &kp HOME   &kp Q     &kp UP    &kp E      &kp END    &trans  &trans  &trans  &trans  &trans
-  &kp LSHFT  &kp LEFT  &kp DOWN  &kp RIGHT  &trans     &trans  &trans  &trans  &trans  &trans
-  &kp LCTRL  &trans    &trans    &trans     &trans     &trans  &trans  &trans  &trans  &trans
-                       &trans    &trans     &trans     &trans  &trans  &trans
+  &kp HOME  &kp Q     &kp UP    &kp E      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
+  &trans    &kp LEFT  &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
+  &trans    &trans    &trans    &trans     &trans               &trans  &trans  &trans  &trans  &trans
+                      &trans    &trans     &trans               &trans  &trans  &trans
             >;
         };
     };
