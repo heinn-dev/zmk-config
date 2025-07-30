@@ -38,27 +38,7 @@
 
         backspace_l {
             bindings = <&kp BACKSPACE>;
-            key-positions = <24 23>;
-        };
-
-        del {
-            bindings = <&kp DELETE>;
-            key-positions = <0 1>;
-        };
-
-        printscreen {
-            bindings = <&kp PRINTSCREEN>;
-            key-positions = <33 35>;
-        };
-
-        printscr_L {
-            bindings = <&kp PRINTSCREEN>;
-            key-positions = <30 32>;
-        };
-
-        insert {
-            bindings = <&kp INSERT>;
-            key-positions = <7 25>;
+            key-positions = <23 24>;
         };
     };
 
@@ -124,16 +104,6 @@
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
         };
-
-        tap_caps_wrd: tap_caps_wrd {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TAP_CAPS_WRD";
-            bindings = <&caps_word>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <300>;
-            flavor = "tap-unless-interrupted";
-        };
     };
 
     macros {
@@ -164,7 +134,7 @@
   &kp Q    &kp W                    &kp E                      &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
   &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D    &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
   &lt 6 Z  &kp X                    &kp C                      &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &tap_hold_key CLCK ESCAPE  &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 INSERT
+                                    &tap_hold_key CLCK ESCAPE  &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
