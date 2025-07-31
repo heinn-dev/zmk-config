@@ -43,12 +43,13 @@
 
         l_esc {
             bindings = <&kp ESCAPE>;
-            key-positions = <22 23>;
+            key-positions = <2 1>;
         };
 
         l_menu {
             bindings = <&kp K_CONTEXT_MENU>;
             key-positions = <4 14>;
+            layers = <0>;
         };
 
         r_ins {
@@ -66,6 +67,46 @@
             bindings = <&kp SLASH>;
             key-positions = <3 13>;
             layers = <6>;
+        };
+
+        l_delete {
+            bindings = <&kp DELETE>;
+            key-positions = <23 22>;
+        };
+
+        lnav_home {
+            bindings = <&kp HOME>;
+            key-positions = <11 1>;
+            layers = <7>;
+        };
+
+        lnav_end {
+            bindings = <&kp END>;
+            key-positions = <13 3>;
+            layers = <7>;
+        };
+
+        l_caps {
+            bindings = <&kp CAPS>;
+            key-positions = <10 11>;
+            layers = <0>;
+        };
+
+        l_capsw {
+            bindings = <&caps_word>;
+            key-positions = <20 21>;
+        };
+
+        win_s {
+            bindings = <&kp LG(S)>;
+            key-positions = <21 11>;
+            layers = <0>;
+        };
+
+        alt_d {
+            bindings = <&kp LA(D)>;
+            key-positions = <21 11>;
+            layers = <0>;
         };
     };
 
@@ -158,10 +199,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q    &kp W                    &kp E                      &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D    &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z  &kp X                    &kp C                      &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &tap_hold_key CLCK ESCAPE  &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+  &kp Q    &kp W                    &kp E                    &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &lt 6 Z  &kp X                    &kp C                    &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                    &lt 8 K_PLAY_PAUSE       &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
@@ -223,10 +264,19 @@
 
         NAV_L {
             bindings = <
-  &kp HOME  &kp Q     &kp UP    &kp E      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
-  &trans    &kp LEFT  &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
-  &trans    &trans    &trans    &trans     &trans               &trans  &trans  &trans  &trans  &trans
-                      &trans    &trans     &trans               &trans  &trans  &trans
+  &trans  &kp Q     &kp UP    &kp E      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
+  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
+  &trans  &trans    &trans    &trans     &trans               &trans  &trans  &trans  &trans  &trans
+                    &trans    &trans     &trans               &trans  &trans  &trans
+            >;
+        };
+
+        fuckass {
+            bindings = <
+  &trans  &trans     &trans             &trans           &trans       &trans  &trans  &trans  &trans  &trans
+  &trans  &kp LG(S)  &kp LA(D)          &kp LS(F)        &kp LC(G)    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans     &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &trans       &trans  &trans  &trans  &trans  &trans
+                     &trans             &trans           &trans       &trans  &trans  &trans
             >;
         };
     };
