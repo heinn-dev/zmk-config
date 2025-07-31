@@ -202,7 +202,7 @@
   &kp Q    &kp W                    &kp E                    &kp R             &kp T          &kp Y            &kp U         &kp I                     &kp O                     &kp P
   &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &mt LEFT_SHIFT F  &mt LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
   &lt 6 Z  &kp X                    &kp C                    &kp V             &kp B          &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &lt 8 K_PLAY_PAUSE       &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+                                    &lt 8 C_PP               &lt 4 TAB         &kp SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
@@ -273,10 +273,10 @@
 
         fuckass {
             bindings = <
-  &trans  &trans     &trans             &trans           &trans       &trans  &trans  &trans  &trans  &trans
-  &trans  &kp LG(S)  &kp LA(D)          &kp LS(F)        &kp LC(G)    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans     &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &trans       &trans  &trans  &trans  &trans  &trans
-                     &trans             &trans           &trans       &trans  &trans  &trans
+  &trans  &trans       &trans             &trans           &trans        &trans  &trans  &trans  &trans  &trans
+  &trans  &kp LG(S)    &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
+  &trans  &kp C_PAUSE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_PLAY    &trans  &trans  &trans  &trans  &trans
+                       &trans             &trans           &trans        &trans  &trans  &trans
             >;
         };
     };
