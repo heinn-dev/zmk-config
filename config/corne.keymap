@@ -90,11 +90,13 @@
             bindings = <&kp CAPS>;
             key-positions = <10 11>;
             layers = <0>;
+            timeout-ms = <40>;
         };
 
         l_capsw {
             bindings = <&caps_word>;
             key-positions = <20 21>;
+            timeout-ms = <40>;
         };
 
         win_s {
@@ -105,7 +107,7 @@
 
         alt_d {
             bindings = <&kp LA(D)>;
-            key-positions = <21 11>;
+            key-positions = <12 22>;
             layers = <0>;
         };
     };
@@ -273,10 +275,10 @@
 
         fuckass {
             bindings = <
-  &trans  &trans       &trans             &trans           &trans        &trans  &trans  &trans  &trans  &trans
-  &trans  &kp LG(S)    &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
-  &trans  &kp C_PAUSE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_PLAY    &trans  &trans  &trans  &trans  &trans
-                       &trans             &trans           &trans        &trans  &trans  &trans
+  &trans  &trans          &trans             &trans           &trans        &trans  &trans  &trans  &trans  &trans
+  &trans  &kp LG(S)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
+  &trans  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
+                          &trans             &trans           &trans        &trans  &trans  &trans
             >;
         };
     };
