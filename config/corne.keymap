@@ -27,7 +27,7 @@
 
         to_game {
             bindings = <&tog 1>;
-            key-positions = <25 29>;
+            key-positions = <4 0>;
             layers = <0 1>;
         };
 
@@ -44,6 +44,7 @@
         l_esc {
             bindings = <&kp ESCAPE>;
             key-positions = <2 1>;
+            layers = <0>;
         };
 
         l_menu {
@@ -55,6 +56,7 @@
         r_ins {
             bindings = <&kp INSERT>;
             key-positions = <5 15>;
+            layers = <0>;
         };
 
         num_plus {
@@ -72,6 +74,7 @@
         l_delete {
             bindings = <&kp DELETE>;
             key-positions = <23 22>;
+            layers = <0>;
         };
 
         lnav_home {
@@ -97,18 +100,6 @@
             bindings = <&caps_word>;
             key-positions = <20 21>;
             timeout-ms = <40>;
-        };
-
-        win_s {
-            bindings = <&kp LG(S)>;
-            key-positions = <21 11>;
-            layers = <0>;
-        };
-
-        alt_d {
-            bindings = <&kp LA(D)>;
-            key-positions = <12 22>;
-            layers = <0>;
         };
     };
 
@@ -210,10 +201,10 @@
 
         game {
             bindings = <
-  &kp ESC         &kp Q  &kp W  &kp E    &kp R        &kp T   &kp Y   &kp U    &kp I  &kp O
-  &kp LEFT_SHIFT  &kp A  &kp S  &kp D    &kp F        &kp G   &kp H   &kp J    &kp K  &kp L
-  &kp LCTRL       &kp Z  &kp X  &kp C    &kp B        &kp B   &kp N   &kp M    &kp P  &trans
-                         &mo 0  &kp TAB  &kp SPACE    &trans  &trans  &kp DEL
+  &kp ESC    &kp Q  &kp W  &kp E           &kp R        &kp T   &kp Y   &kp U    &kp I  &kp O
+  &kp TAB    &kp A  &kp S  &kp D           &kp F        &kp G   &kp H   &kp J    &kp K  &kp L
+  &kp LCTRL  &kp Z  &kp X  &kp C           &kp B        &kp B   &kp N   &kp M    &kp P  &trans
+                    &mo 3  &kp LEFT_SHIFT  &kp SPACE    &trans  &trans  &kp DEL
             >;
         };
 
