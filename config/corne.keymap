@@ -202,7 +202,7 @@
         game {
             bindings = <
   &lt 0 ESCAPE  &kp Q  &kp W  &kp E           &kp R        &trans  &trans  &trans  &trans  &trans
-  &lt 4 ESCAPE  &kp A  &kp S  &kp D           &kp F        &trans  &trans  &trans  &trans  &trans
+  &lt 4 TAB     &kp A  &kp S  &kp D           &kp F        &trans  &trans  &trans  &trans  &trans
   &kp LCTRL     &kp Z  &kp X  &kp C           &kp V        &trans  &trans  &trans  &trans  &trans
                        &mo 7  &kp LEFT_SHIFT  &kp SPACE    &mo 0   &trans  &trans
             >;
