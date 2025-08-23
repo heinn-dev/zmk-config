@@ -108,8 +108,13 @@
         };
 
         rclick {
-            bindings = <&mkp RCLK>;
+            bindings = <&mkp MB2>;
             key-positions = <3 4>;
+        };
+
+        mclick {
+            bindings = <&mkp MB3>;
+            key-positions = <3 14>;
         };
     };
 
