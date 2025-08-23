@@ -101,6 +101,16 @@
             key-positions = <20 21>;
             timeout-ms = <40>;
         };
+
+        lclick {
+            bindings = <&mkp MB1>;
+            key-positions = <13 14>;
+        };
+
+        rclick {
+            bindings = <&mkp RCLK>;
+            key-positions = <3 4>;
+        };
     };
 
     behaviors {
