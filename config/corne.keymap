@@ -34,6 +34,7 @@
         enter_L {
             bindings = <&kp ENTER>;
             key-positions = <12 13>;
+            layers = <0 7 3 4>;
         };
 
         backspace_l {
@@ -115,6 +116,11 @@
         mclick {
             bindings = <&mkp MB3>;
             key-positions = <3 14>;
+        };
+
+        to_game2 {
+            bindings = <&to 9>;
+            key-positions = <20 4>;
         };
     };
 
@@ -285,6 +291,15 @@
   &trans  &kp LG(S)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
   &trans  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
                           &trans             &trans           &trans        &trans  &trans  &trans
+            >;
+        };
+
+        GAME2 {
+            bindings = <
+  &kp Q    &kp F  &kp E      &kp R                   &kp T        &kp Y   &kp U   &kp I      &kp O    &kp P
+  &kp A    &kp S  &kp W      &kp D                   &kp G        &kp H   &kp J   &kp K      &kp L    &kp SEMI
+  &lt 6 Z  &kp X  &kp C      &kp V                   &kp B        &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
+                  &kp LCTRL  &alt_holdtap LSHFT TAB  &kp SPACE    &trans  &trans  &trans
             >;
         };
     };
