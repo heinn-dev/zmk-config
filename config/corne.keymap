@@ -240,10 +240,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q    &kp W                 &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A  &urob_hrm LEFT_WIN S  &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z  &kp X                 &kp C                    &kp V                   &kp B                &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                 &lt 8 C_PP               &lt 7 TAB               &spc_flip 4 SPACE    &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+  &kp Q    &kp W                 &kp E                    &kp R                   &kp T                    &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 5 A  &urob_hrm LEFT_WIN S  &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G        &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &lt 6 Z  &kp X                 &kp C                    &kp V                   &tap_hold_key SPACE B    &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                 &lt 8 C_PP               &lt 7 TAB               &spc_flip 4 SPACE        &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
