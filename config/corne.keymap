@@ -202,7 +202,6 @@
             hold-trigger-on-release;
             flavor = "balanced";
             hold-while-undecided;
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 33 34 35>;
         };
 
         spc_flip: spc_flip {
@@ -212,7 +211,7 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <180>;
-            flavor = "hold-preferred";
+            flavor = "tap-preferred";
         };
 
         urob_hrm_r: urob_hrm_r {
@@ -227,7 +226,6 @@
             hold-trigger-on-release;
             flavor = "balanced";
             hold-while-undecided;
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32>;
         };
     };
 
@@ -256,10 +254,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q    &kp W                    &kp E                    &kp R                     &kp T                  &kp Y                &kp U                &kp I                     &kp O                     &kp P
-  &lt 5 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &urob_hrm_l LEFT_SHIFT F  &urob_hrm_l LCTRL G    &urob_hrm_r RCTRL H  &urob_hrm_r LSHFT J  &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z  &kp X                    &kp C                    &kp V                     &kp B                  &kp N                &kp M                &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &lt 8 C_PP               &lt 7 TAB                 &spc_flip 4 SPACE      &lt 2 BACKSPACE      &lt 3 DELETE         &lt 5 PRINTSCREEN
+  &kp Q    &kp W                    &kp E                    &kp R                     &kp T                  &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 5 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &urob_hrm_l LEFT_SHIFT F  &urob_hrm_l LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &lt 6 Z  &kp X                    &kp C                    &kp V                     &kp B                  &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                    &lt 8 C_PP               &lt 7 TAB                 &spc_flip 4 SPACE      &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
