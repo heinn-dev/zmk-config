@@ -80,16 +80,6 @@
             layers = <0>;
         };
 
-        lnav_home {
-            bindings = <&kp HOME>;
-            key-positions = <10 11>;
-        };
-
-        lnav_end {
-            bindings = <&kp END>;
-            key-positions = <13 14>;
-        };
-
         l_caps {
             bindings = <&kp CAPS>;
             key-positions = <10 11>;
