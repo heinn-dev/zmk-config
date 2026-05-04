@@ -258,10 +258,10 @@
 
         FLIP {
             bindings = <
-  &kp P      &kp O      &kp I           &kp U             &kp Y          &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc SCRL_UP
-  &kp LS(J)  &kp L      &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN
-  &kp LA(D)  &kp LC(G)  &kp LC(H)       &kp M             &kp N          &trans  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
-                        &trans          &trans            &trans         &trans  &trans          &trans
+  &kp P      &kp O       &kp I           &kp U             &kp Y          &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc SCRL_UP
+  &kp LS(J)  &kp L       &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN
+  &kp SLASH  &kp PERIOD  &kp COMMA       &kp M             &kp N          &trans  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
+                         &trans          &trans            &trans         &trans  &trans          &trans
             >;
         };
 
