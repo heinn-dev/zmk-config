@@ -94,12 +94,12 @@
             layers = <0>;
         };
 
-        rclick {
+        r_click {
             bindings = <&mkp MB2>;
             key-positions = <4 3>;
         };
 
-        mclick {
+        l_click {
             bindings = <&mkp LCLK>;
             key-positions = <3 14>;
         };
@@ -107,6 +107,21 @@
         to_game2 {
             bindings = <&tog 9>;
             key-positions = <20 4>;
+        };
+
+        L_tab {
+            bindings = <&kp TAB>;
+            key-positions = <0 1>;
+        };
+
+        l_back {
+            bindings = <&kp K_BACK>;
+            key-positions = <13 14>;
+        };
+
+        r_forward {
+            bindings = <&kp LS(K_FORWARD)>;
+            key-positions = <15 16>;
         };
     };
 
@@ -195,6 +210,26 @@
             tapping-term-ms = <180>;
             flavor = "tap-preferred";
         };
+
+        hold_sticky: hold_sticky {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_STICKY";
+            bindings = <&mo>, <&sticky_shift>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <120>;
+            flavor = "balanced";
+        };
+
+        sticky_shift: sticky_shift {
+            compatible = "zmk,behavior-sticky-key";
+            label = "STICKY_SHIFT";
+            bindings = <&kp>;
+            #binding-cells = <1>;
+            release-after-ms = <200>;
+            quick-release;
+            ignore-modifiers;
+        };
     };
 
     macros {
@@ -222,10 +257,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q    &kp W                    &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A  &alt_holdtap LEFT_WIN S  &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z  &kp X                    &kp C                    &kp V                   &kp B                &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &lt 8 C_PP               &lt 4 TAB               &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+  &alt_holdtap LEFT_GUI Q  &kp W    &kp E                    &kp R                      &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 7 A                  &lt 6 S  &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F     &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &lt 6 Z                  &kp X    &kp C                    &kp V                      &kp B                &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                    &lt 8 C_PP               &hold_sticky 4 LEFT_SHIFT  &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
