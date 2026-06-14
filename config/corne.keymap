@@ -331,10 +331,10 @@
 
         fuckass {
             bindings = <
-  &kp LS(F1)        &kp LS(F2)      &kp LS(F3)         &kp LS(F4)       &kp LS(F5)    &trans  &trans  &trans  &trans  &trans
-  &kp C_AC_FORWARD  &kp LG(S)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
-  &kp C_AC_BACK     &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
-                                    &trans             &trans           &trans        &trans  &trans  &trans
+  &kp F1         &kp F2          &kp F3             &kp F4           &kp F5        &trans  &trans  &trans  &trans  &trans
+  &kp LG(S)      &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
+  &kp C_AC_BACK  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
+                                 &trans             &trans           &trans        &trans  &trans  &trans
             >;
         };
 
