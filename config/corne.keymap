@@ -28,7 +28,7 @@
         };
 
         to_game {
-            bindings = <&tog 1>;
+            bindings = <&to 1>;
             key-positions = <4 0>;
             layers = <0 1>;
         };
@@ -105,7 +105,7 @@
         };
 
         to_game2 {
-            bindings = <&tog 9>;
+            bindings = <&to 9>;
             key-positions = <20 4>;
         };
 
@@ -115,13 +115,18 @@
         };
 
         l_back {
-            bindings = <&kp K_BACK>;
+            bindings = <&kp C_AC_BACK>;
             key-positions = <13 14>;
         };
 
         r_forward {
-            bindings = <&kp LS(K_FORWARD)>;
+            bindings = <&kp C_AC_FORWARD>;
             key-positions = <15 16>;
+        };
+
+        nogaming {
+            bindings = <&to 0>;
+            key-positions = <5 9>;
         };
     };
 
@@ -226,7 +231,7 @@
             label = "STICKY_SHIFT";
             bindings = <&kp>;
             #binding-cells = <1>;
-            release-after-ms = <200>;
+            release-after-ms = <500>;
             quick-release;
             ignore-modifiers;
         };
