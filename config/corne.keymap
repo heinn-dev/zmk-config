@@ -114,11 +114,6 @@
             key-positions = <0 1>;
         };
 
-        r_forward {
-            bindings = <&kp C_AC_FORWARD>;
-            key-positions = <15 16>;
-        };
-
         nogaming {
             bindings = <&to 0>;
             key-positions = <5 9>;
