@@ -252,10 +252,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &alt_holdtap LEFT_GUI Q  &kp W    &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A                  &lt 6 S  &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &lt 6 Z                  &kp X    &kp C                    &kp V                   &lt 7 B              &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                    &lt 8 C_PP               &lt 4 TAB               &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+  &alt_holdtap LEFT_GUI Q  &lt 10 W  &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &kp A                    &lt 6 S   &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &kp Z                    &kp X     &kp C                    &kp V                   &lt 7 B              &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                     &lt 8 C_PP               &lt 4 TAB               &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
             >;
         };
 
@@ -306,10 +306,10 @@
 
         NUM {
             bindings = <
-  &kp MINUS     &kp ASTERISK       &kp N7     &kp N8      &kp N9    &trans  &trans  &trans  &trans  &trans
-  &kp PLUS      &kp RIGHT_BRACKET  &kp N4     &kp N5      &kp N6    &trans  &trans  &trans  &trans  &trans
-  &kp ASTERISK  &kp LEFT_BRACKET   &kp N1     &kp N2      &kp N3    &trans  &trans  &trans  &trans  &trans
-                                   &kp SLASH  &kp PERIOD  &kp N0    &trans  &trans  &trans
+  &kp SLASH  &kp ASTERISK       &kp N7     &kp N8      &kp N9    &trans  &trans  &trans  &trans  &trans
+  &kp PLUS   &kp RIGHT_BRACKET  &kp N4     &kp N5      &kp N6    &trans  &trans  &trans  &trans  &trans
+  &kp SLASH  &kp LEFT_BRACKET   &kp N1     &kp N2      &kp N3    &trans  &trans  &trans  &trans  &trans
+                                &kp MINUS  &kp PERIOD  &kp N0    &trans  &trans  &trans
             >;
 
             label = "SL";
@@ -339,6 +339,15 @@
   &kp F    &kp A  &kp S      &kp D                   &kp G        &kp H   &kp J   &kp K      &kp L    &kp SEMI
   &lt 6 Z  &kp X  &kp C      &kp V                   &kp B        &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
                   &kp LCTRL  &alt_holdtap LSHFT TAB  &kp SPACE    &trans  &trans  &trans
+            >;
+        };
+
+        draw {
+            bindings = <
+  &trans  &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RC(H)    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans            &trans             &kp LC(G)    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans            &trans             &trans       &trans  &trans  &trans  &trans  &trans
+                  &trans            &trans             &trans       &trans  &trans  &trans
             >;
         };
     };
