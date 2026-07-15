@@ -5,7 +5,6 @@
  */
 
 #include "corne_shared.dtsi"
-#include "corne_trackball.dtsi"
 
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
@@ -21,6 +20,20 @@
 };
 
 / {
+    /* Receives motion relayed from the trackball peripheral, which has its
+     * own, separately-defined instance of this node (same reg value).
+     * Devicetree includes don't reach across shield folders, so this small
+     * node is duplicated here rather than shared via a common file. */
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
     /* Watches trackball Y motion while the "volume" layer (13) is held and
      * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement. If up
      * and down feel swapped, swap the two &kp bindings below. */
@@ -32,27 +45,25 @@
         tick = <20>;
         bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
     };
-};
-
-&trackball_listener {
-    status = "okay";
 
     /* Auto-activate the mouse layer (11) on trackball movement, deactivate
      * after 500ms of no movement. Also apply pointer acceleration to
-     * regular cursor movement. */
-    input-processors = <&zip_temp_layer 11 500>, <&pointer_accel>;
+     * regular cursor movement. Holding SPACE on the mouse layer (-> layer
+     * 12) scrolls instead of moving the cursor; holding TAB (-> layer 13)
+     * adjusts volume instead. */
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        input-processors = <&zip_temp_layer 11 500>, <&pointer_accel>;
 
-    /* Holding SPACE on the mouse layer (-> layer 12) turns Y/X motion into
-     * vertical/horizontal scroll instead of cursor movement. */
-    scroll_layer {
-        layers = <12>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
-    };
+        scroll_layer {
+            layers = <12>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
 
-    /* Holding TAB on the mouse layer (-> layer 13) turns Y motion into
-     * volume up/down taps instead of cursor movement. */
-    volume_layer {
-        layers = <13>;
-        input-processors = <&trackball_volume_ticker>;
+        volume_layer {
+            layers = <13>;
+            input-processors = <&trackball_volume_ticker>;
+        };
     };
 };
