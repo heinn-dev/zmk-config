@@ -34,8 +34,15 @@
  * our trackball_split here deliberately has none, since on the actual
  * central (the dongle) it just receives relayed events. So all of this
  * only gets compiled for whichever board is the real central.
+ *
+ * Note: plain `#if CONFIG_FOO`, not `#if IS_ENABLED(CONFIG_FOO)` - the
+ * latter is a Zephyr C macro that isn't available while preprocessing
+ * devicetree/keymap files (no implicit zephyr/sys/util_macro.h include
+ * here), so it silently evaluated as always-true instead of guarding
+ * anything. A bare Kconfig bool macro (1 if set, undefined/0 otherwise)
+ * works fine directly in #if.
  */
-#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL) || !IS_ENABLED(CONFIG_ZMK_SPLIT)
+#if CONFIG_ZMK_SPLIT_ROLE_CENTRAL
 
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
