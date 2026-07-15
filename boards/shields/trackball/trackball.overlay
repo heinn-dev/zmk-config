@@ -22,8 +22,12 @@
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
 #include <zephyr/dt-bindings/gpio/gpio.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/zmk/matrix_transform.h>
 #include <behaviors.dtsi>
+/* Must come after behaviors.dtsi: dt-bindings/zmk/modifiers.h (pulled in
+ * transitively via behaviors.dtsi -> keys.h) also defines a macro called
+ * RC (right-ctrl modifier, 1 arg), which would otherwise shadow this
+ * header's RC(row,col) (2 args) used in the matrix transform below. */
+#include <dt-bindings/zmk/matrix_transform.h>
 
 &i2c1 {
     status = "disabled";
