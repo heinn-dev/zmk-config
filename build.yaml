@@ -26,14 +26,20 @@ include:
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
   - board: nice_nano_v2
     shield: corne_right
-  - board: xiao_ble
+  # seeeduino_xiao_ble, NOT the bare Zephyr xiao_ble board: only the former
+  # gets ZMK's board tweaks (app/boards/seeeduino_xiao_ble.conf/.overlay -
+  # ZMK_BLE/ZMK_USB on, NVS bond storage, battery divider). On plain
+  # xiao_ble the trackball built with Bluetooth entirely off. (The old
+  # standalone trackball repo's `xiao_ble//zmk` is this same board after
+  # the hwmv2 rename on newer zmk than our pinned v0.3.)
+  - board: seeeduino_xiao_ble
     shield: corne_dongle
-  - board: xiao_ble
+  - board: seeeduino_xiao_ble
     shield: trackball
   # Flash to any device to clear its stored bonds - required once after
   # switching to the dongle topology, and useful again if pairing ever gets
   # stuck (the trackball/dongle have no physical &bt BT_CLR key of their own).
   - board: nice_nano_v2
     shield: settings_reset
-  - board: xiao_ble
+  - board: seeeduino_xiao_ble
     shield: settings_reset

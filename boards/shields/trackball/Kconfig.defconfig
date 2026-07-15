@@ -9,6 +9,14 @@ config ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     default n
 
+# The split link to the dongle is BLE - this shield is useless without it.
+# ZMK_BLE has no default of its own at zmk v0.3; it normally comes from
+# ZMK's per-board conf (app/boards/seeeduino_xiao_ble.conf), but state it
+# here too so a board-name change can't silently build a radio-less
+# trackball again.
+config ZMK_BLE
+    default y
+
 config ZMK_POINTING
     default y
 
