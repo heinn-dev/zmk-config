@@ -2,6 +2,12 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
+ *
+ * Shared by the corne_left/corne_right peripherals and the corne_dongle
+ * central (ZMK's shield-name fallback strips the _dongle suffix and lands
+ * here). Only layer definitions live in this file - the trackball input
+ * wiring is central-only and lives in
+ * boards/shields/corne/corne_dongle.overlay instead.
  */
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500
@@ -352,11 +358,37 @@
         };
 
         mouse {
+            // Auto-activated by trackball movement (see &trackball_listener
+            // in boards/shields/corne/corne_dongle.overlay). Holding TAB
+            // switches the trackball to volume mode (layer 13), holding
+            // SPACE switches it to scroll mode (layer 12).
             bindings = <
   &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
   &trans  &trans  &mkp MB3  &tap_hold_key RC(LSHFT) MB2  &mkp MB1    &trans  &trans  &trans  &trans  &trans
   &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
-                  &trans    &trans                       &trans      &trans  &trans  &trans
+                  &trans    &mo 13                       &mo 12      &trans  &trans  &trans
+            >;
+        };
+
+        scroll {
+            // Momentary layer only used as a gate for &trackball_listener's
+            // scroll_layer override - deliberately transparent otherwise.
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        volume {
+            // Momentary layer only used as a gate for &trackball_listener's
+            // volume_layer override - deliberately transparent otherwise.
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };

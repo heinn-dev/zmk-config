@@ -2,12 +2,23 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # Additional modules containing boards/shields/custom code can be listed here as well
-    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+    - name: badjeff
+      url-base: https://github.com/badjeff
+    - name: nuovotaka
+      url-base: https://github.com/nuovotaka
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
+    - name: zmk-pmw3610-driver
+      remote: badjeff
+      # PMW3610 trackball sensor driver. Pinned commit (2026-04-16).
+      revision: 44b4a76b74d293a93cec4ccb7e04cb8d29c10f93
+    - name: zmk-pointing-acceleration-alpha
+      remote: nuovotaka
+      # Pointer acceleration. Community "alpha" module, not an official ZMK
+      # feature. Pinned commit (2026-07-14).
+      revision: 780dfcd6b796063367893ff41e233773e12fb07c
   self:
     path: config

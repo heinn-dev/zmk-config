@@ -3,4 +3,5 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
+    # Keep this ref in sync with the zmk revision pinned in config/west.yml.
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3

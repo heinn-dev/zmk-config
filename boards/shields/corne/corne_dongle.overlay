@@ -1,14 +1,20 @@
+/*
+ * Seeed Studio Xiao BLE dongle - the split central for the whole setup.
+ * corne_left, corne_right and the trackball all connect to it as
+ * peripherals (see boards/shields/corne/Kconfig.defconfig), and it is
+ * what actually talks HID to the host.
+ *
+ * It has no physical keys of its own (hence the mock kscan); the keymap
+ * comes from config/corne.keymap via ZMK's shield-name fallback
+ * (corne_dongle -> corne).
+ */
+
 #include <dt-bindings/zmk/matrix_transform.h>
-
-
-&foostan_corne_5col_layout {
-    transform = <&five_column_transform>;
-};
 
 / {
     chosen {
         zmk,kscan = &mock_kscan;
-		zmk,physical-layout = &foostan_corne_5col_layout;  // New item added
+        zmk,physical-layout = &physical_layout0;
     };
 
     mock_kscan: mock_kscan_0 {
@@ -17,8 +23,8 @@
         rows = <0>;
         events = <0>;
     };
-	
-	    five_column_transform: keymap_transform_0 {
+
+    five_column_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <10>;
         rows = <4>;
@@ -33,12 +39,93 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
                         RC(3,3) RC(3,4) RC(3,5)  RC(3,6) RC(3,7) RC(3,8)
         >;
     };
-	
-	    physical_layout0: physical_layout_0 {
+
+    physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
-        transform = &five_column_transform;
+        transform = <&five_column_transform>;
     };
-	
+};
 
+/*
+ * Trackball wiring, central side. The trackball peripheral relays raw
+ * PMW3610 motion here over the split link (see
+ * boards/shields/trackball/trackball.overlay); everything below decides
+ * what that motion turns into. It lives in this overlay, not in the
+ * shared corne.keymap, because only the central may define an input
+ * listener for a split input - on corne_left/corne_right builds none of
+ * this exists.
+ *
+ * These #includes deliberately come after the matrix transform above:
+ * keys.h pulls in dt-bindings/zmk/modifiers.h, whose 1-arg RC (right-ctrl)
+ * macro would replace matrix_transform.h's 2-arg RC(row,col) used in the
+ * map. corne.keymap (processed after this file) includes keys.h itself, so
+ * it still gets the modifier RC it needs for its own bindings.
+ */
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <input/processors.dtsi>
+#include <behaviors/input_gestures_accel.dtsi>
+
+/* Pointer acceleration (nuovotaka/zmk-pointing-acceleration-alpha,
+ * community module - not an official ZMK feature). Enabled via
+ * config/corne_dongle.conf. */
+&pointer_accel {
+    input-type = <INPUT_EV_REL>;
+    codes = <INPUT_REL_X INPUT_REL_Y>;
+    sensitivity = <1500>;  /* 1.5x base speed */
+    max-factor = <2000>;   /* 2.0x max speed boost at high velocity */
+    curve-type = <1>;      /* Mild curve */
+    sensor-dpi = <600>;    /* matches cpi = <600> on the trackball */
+};
+
+/ {
+    /* Receives motion relayed from the trackball peripheral, which has its
+     * own, separately-defined instance of this node (same reg value).
+     * Devicetree includes don't reach across shield folders, so this small
+     * node is duplicated there rather than shared via a common file. */
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    /* Watches trackball Y motion while the "volume" layer (13) is held and
+     * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement. If up
+     * and down feel swapped, swap the two &kp bindings below. */
+    trackball_volume_ticker: trackball_volume_ticker {
+        compatible = "zmk,input-processor-axis-behaviors";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        code = <INPUT_REL_Y>;
+        tick = <20>;
+        bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
+    };
+
+    /* Auto-activate the mouse layer (11) on trackball movement, deactivate
+     * after 500ms of no movement, and apply pointer acceleration to cursor
+     * movement. While the mouse layer is up, holding SPACE (-> layer 12)
+     * scrolls instead of moving the cursor and holding TAB (-> layer 13)
+     * adjusts volume instead - see the mouse/scroll/volume layers in
+     * config/corne.keymap. */
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        input-processors = <&zip_temp_layer 11 500>, <&pointer_accel>;
+
+        scroll_layer {
+            layers = <12>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
+
+        volume_layer {
+            layers = <13>;
+            input-processors = <&trackball_volume_ticker>;
+        };
+    };
 };

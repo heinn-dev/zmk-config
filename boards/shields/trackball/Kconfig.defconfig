@@ -1,0 +1,27 @@
+if SHIELD_TRACKBALL
+
+config ZMK_KEYBOARD_NAME
+    default "Trackball"
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default n
+
+config ZMK_POINTING
+    default y
+
+# PMW3610 driver (badjeff/zmk-pmw3610-driver). It talks to the sensor over
+# hardware SPI (the single SDIO line is wired to both MOSI and MISO), so
+# SPI + pinctrl are required even though there's no dedicated SPI header used.
+config PINCTRL
+    default y
+
+config SPI
+    default y
+
+config PMW3610_ALT
+    default y
+
+endif

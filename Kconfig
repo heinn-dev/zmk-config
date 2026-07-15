@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: MIT
+#
+# Custom input processor: taps a direction-specific behavior once per
+# accumulated tick of a continuous relative axis (e.g. trackball Y motion
+# -> C_VOLUME_UP/C_VOLUME_DOWN taps), since ZMK's own behaviors input
+# processor is documented as button-only and can't tell direction apart.
+
+config ZMK_INPUT_PROCESSOR_AXIS_BEHAVIORS
+    bool "Axis Behaviors input processor"
+    default y
+    depends on ZMK_POINTING
+    depends on DT_HAS_ZMK_INPUT_PROCESSOR_AXIS_BEHAVIORS_ENABLED

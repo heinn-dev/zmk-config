@@ -19,7 +19,21 @@
 #
 ---
 include:
+  # corne_left used to be the central; now that the dongle exists, force it
+  # to run as a peripheral instead (see hardware-integration/dongle.mdx).
   - board: nice_nano_v2
     shield: corne_left
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
   - board: nice_nano_v2
     shield: corne_right
+  - board: xiao_ble
+    shield: corne_dongle
+  - board: xiao_ble
+    shield: trackball
+  # Flash to any device to clear its stored bonds - required once after
+  # switching to the dongle topology, and useful again if pairing ever gets
+  # stuck (the trackball/dongle have no physical &bt BT_CLR key of their own).
+  - board: nice_nano_v2
+    shield: settings_reset
+  - board: xiao_ble
+    shield: settings_reset
