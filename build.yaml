@@ -29,7 +29,7 @@ include:
   - board: xiao_ble
     shield: corne_dongle
   - board: xiao_ble
-    shield: corne_trackball
+    shield: trackball
   # Flash to any device to clear its stored bonds - required once after
   # switching to the dongle topology, and useful again if pairing ever gets
   # stuck (the trackball/dongle have no physical &bt BT_CLR key of their own).

@@ -12,7 +12,7 @@ config ZMK_SPLIT
 
 # Set this to the number of peripherals your dongle will have.
 # For a unibody, this would be 1. If you have left and right halves, set it to 2, etc.
-# Ours: corne_left, corne_right, corne_trackball = 3.
+# Ours: corne_left, corne_right, trackball = 3.
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
     default 3
 
