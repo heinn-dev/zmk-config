@@ -9,12 +9,9 @@
  * because nickcoutsos's keymap editor doesn't support multiple .keymap
  * files per repo - it just grabs the first one it finds in config/.
  *
- * The trackball input-processing further down only matters on the dongle
- * (the actual central) - it's inert on corne_left/corne_right since they
- * have no trackball wired to them, but the required Kconfig
- * (CONFIG_ZMK_INPUT_PROCESSOR_ACCELERATION etc, see corne.conf) still has
- * to be enabled for all three, or the referenced processors won't have a
- * compiled driver to link against.
+ * The trackball input-processing further down is wrapped in an #if so it
+ * only compiles for whichever board is the actual central (the dongle) -
+ * see the comment at that #if for why.
  */
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500
@@ -23,14 +20,26 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <input/processors.dtsi>
-#include <behaviors/input_gestures_accel.dtsi>
-#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &mt {
     flavor = "balanced";
     hold-while-undecided;
 };
+
+/*
+ * corne_left/corne_right are peripherals (CONFIG_ZMK_SPLIT_ROLE_CENTRAL=n)
+ * even though this file is shared with them. ZMK's input-split driver
+ * hard-requires a `device` property on any zmk,input-split node compiled
+ * for a peripheral role (BUILD_ASSERT in app/src/pointing/input_split.c) -
+ * our trackball_split here deliberately has none, since on the actual
+ * central (the dongle) it just receives relayed events. So all of this
+ * only gets compiled for whichever board is the real central.
+ */
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL) || !IS_ENABLED(CONFIG_ZMK_SPLIT)
+
+#include <input/processors.dtsi>
+#include <behaviors/input_gestures_accel.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
@@ -42,8 +51,6 @@
 };
 
 / {
-    chosen { zmk,matrix_transform = &five_column_transform; };
-
     /* Receives motion relayed from the trackball peripheral, which has its
      * own, separately-defined instance of this node (same reg value).
      * Devicetree includes don't reach across shield folders, so this small
@@ -90,6 +97,12 @@
             input-processors = <&trackball_volume_ticker>;
         };
     };
+};
+
+#endif /* central-only trackball wiring */
+
+/ {
+    chosen { zmk,matrix_transform = &five_column_transform; };
 
     combos {
         compatible = "zmk,combos";
