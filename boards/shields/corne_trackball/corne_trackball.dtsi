@@ -1,0 +1,26 @@
+/*
+ * Shared between the trackball peripheral and the dongle (central):
+ * the input-split device that relays raw motion from peripheral to
+ * central, and the (disabled by default) input listener that the
+ * central will enable and add input processors to via the keymap.
+ *
+ * See https://zmk.dev/docs/hardware-integration/pointing#listener-and-input-split-device
+ */
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+    };
+};

@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: MIT
+
+description: |
+  Input processor that watches a single relative axis code and taps a
+  direction-specific behavior once per `tick` of accumulated movement,
+  e.g. converting trackball Y motion into repeated C_VOLUME_UP/DOWN taps.
+  Unlike zmk,input-processor-behaviors (button events only, no direction),
+  this accumulates signed movement and dispatches to one of two bindings
+  depending on which direction crossed the threshold.
+
+compatible: "zmk,input-processor-axis-behaviors"
+
+include: ip_zero_param.yaml
+
+properties:
+  type:
+    type: int
+    description: Input event type to watch. Defaults to INPUT_EV_REL.
+  code:
+    type: int
+    required: true
+    description: The single input code to watch, e.g. INPUT_REL_Y.
+  tick:
+    type: int
+    required: true
+    description: Accumulated magnitude of movement required to trigger one tap.
+  bindings:
+    type: phandle-array
+    required: true
+    description: Exactly two bindings - [0] taps on negative accumulation, [1] taps on positive accumulation.

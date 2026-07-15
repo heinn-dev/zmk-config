@@ -1,0 +1,58 @@
+/*
+ * The dongle is the real central now, so it gets the actual keymap
+ * content (combos/behaviors/macros/layers), plus all the trackball
+ * input-processing (which needs layer state, so it can only live here).
+ */
+
+#include "corne_shared.dtsi"
+#include "corne_trackball.dtsi"
+
+#include <input/processors.dtsi>
+#include <behaviors/input_gestures_accel.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+&pointer_accel {
+    input-type = <INPUT_EV_REL>;
+    codes = <INPUT_REL_X INPUT_REL_Y>;
+    sensitivity = <1500>;  /* 1.5x base speed */
+    max-factor = <2000>;   /* 2.0x max speed boost at high velocity */
+    curve-type = <1>;      /* Mild curve */
+    sensor-dpi = <600>;    /* matches cpi = <600> on the trackball */
+};
+
+/ {
+    /* Watches trackball Y motion while the "volume" layer (13) is held and
+     * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement. If up
+     * and down feel swapped, swap the two &kp bindings below. */
+    trackball_volume_ticker: trackball_volume_ticker {
+        compatible = "zmk,input-processor-axis-behaviors";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        code = <INPUT_REL_Y>;
+        tick = <20>;
+        bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
+    };
+};
+
+&trackball_listener {
+    status = "okay";
+
+    /* Auto-activate the mouse layer (11) on trackball movement, deactivate
+     * after 500ms of no movement. Also apply pointer acceleration to
+     * regular cursor movement. */
+    input-processors = <&zip_temp_layer 11 500>, <&pointer_accel>;
+
+    /* Holding SPACE on the mouse layer (-> layer 12) turns Y/X motion into
+     * vertical/horizontal scroll instead of cursor movement. */
+    scroll_layer {
+        layers = <12>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
+    };
+
+    /* Holding TAB on the mouse layer (-> layer 13) turns Y motion into
+     * volume up/down taps instead of cursor movement. */
+    volume_layer {
+        layers = <13>;
+        input-processors = <&trackball_volume_ticker>;
+    };
+};
