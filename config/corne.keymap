@@ -3,9 +3,6 @@
  *
  * SPDX-License-Identifier: MIT
  *
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  * Shared by corne_left, corne_right, and corne_dongle (via ZMK's shared
  * config-file convention, which strips the shield suffix and falls back
  * to this file when no exact match exists). Kept as a single file
@@ -461,24 +458,3 @@
         };
     };
 };
-=======
- * Real keymap content lives in corne_shared.dtsi so it can also be used by
- * corne_dongle.keymap, since the dongle is now the actual central.
- */
-
-#include "corne_shared.dtsi"
->>>>>>> parent of e96de08 (editable)
-=======
- * Real keymap content lives in corne_shared.dtsi so it can also be used by
- * corne_dongle.keymap, since the dongle is now the actual central.
- */
-
-#include "corne_shared.dtsi"
->>>>>>> parent of e96de08 (editable)
-=======
- * Real keymap content lives in corne_shared.dtsi so it can also be used by
- * corne_dongle.keymap, since the dongle is now the actual central.
- */
-
-#include "corne_shared.dtsi"
->>>>>>> parent of e96de08 (editable)
