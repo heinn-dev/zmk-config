@@ -1,14 +1,35 @@
 /*
- * The dongle is the real central now, so it gets the actual keymap
- * content (combos/behaviors/macros/layers), plus all the trackball
- * input-processing (which needs layer state, so it can only live here).
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * The dongle is the real central now, so it gets the actual keymap content
+ * (combos/behaviors/macros/layers) plus all the trackball input-processing
+ * (which needs layer state, so it can only live here).
+ *
+ * This content is inlined directly (not #include'd from a shared file)
+ * because nickcoutsos's keymap editor doesn't support the C preprocessor -
+ * it needs a single self-contained devicetree root node per keymap file.
+ * corne.keymap (corne_left/corne_right) is a trivial placeholder instead,
+ * since a peripheral's own keymap is never actually consulted at runtime -
+ * only the central's is. Edit keymap content here, and select "corne_dongle"
+ * (not corne_left/corne_right) in the keymap editor.
  */
 
-#include "corne_shared.dtsi"
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500
 
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+
+&mt {
+    flavor = "balanced";
+    hold-while-undecided;
+};
 
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
@@ -20,10 +41,12 @@
 };
 
 / {
+    chosen { zmk,matrix_transform = &five_column_transform; };
+
     /* Receives motion relayed from the trackball peripheral, which has its
      * own, separately-defined instance of this node (same reg value).
      * Devicetree includes don't reach across shield folders, so this small
-     * node is duplicated here rather than shared via a common file. */
+     * node is duplicated there rather than shared via a common file. */
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
@@ -64,6 +87,373 @@
         volume_layer {
             layers = <13>;
             input-processors = <&trackball_volume_ticker>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        enter {
+            bindings = <&kp ENTER>;
+            key-positions = <16 17>;
+        };
+
+        to_game {
+            bindings = <&to 1>;
+            key-positions = <4 0>;
+            layers = <0 1>;
+        };
+
+        enter_L {
+            bindings = <&kp ENTER>;
+            key-positions = <12 13>;
+            layers = <0 7 3 4>;
+        };
+
+        backspace_l {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <2 3>;
+        };
+
+        l_esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <2 1>;
+            layers = <0 1 9>;
+        };
+
+        l_menu {
+            bindings = <&kp K_CONTEXT_MENU>;
+            key-positions = <23 24>;
+            layers = <0>;
+        };
+
+        r_ins {
+            bindings = <&kp INSERT>;
+            key-positions = <5 6>;
+            layers = <0>;
+        };
+
+        num_plus {
+            bindings = <&kp PLUS>;
+            key-positions = <4 3>;
+            layers = <6>;
+        };
+
+        num_div {
+            bindings = <&kp SLASH>;
+            key-positions = <13 14>;
+            layers = <6>;
+        };
+
+        l_delete {
+            bindings = <&kp DELETE>;
+            key-positions = <23 22>;
+            layers = <0>;
+        };
+
+        l_caps {
+            bindings = <&kp CAPS>;
+            key-positions = <10 11>;
+            layers = <0>;
+            timeout-ms = <40>;
+        };
+
+        l_capsw {
+            bindings = <&sticky_shift LEFT_SHIFT>;
+            key-positions = <20 21>;
+            timeout-ms = <40>;
+            layers = <0>;
+        };
+
+        r_click {
+            bindings = <&kp C_AC_FORWARD>;
+            key-positions = <4 3>;
+        };
+
+        l_click {
+            bindings = <&mkp LCLK>;
+            key-positions = <3 14>;
+        };
+
+        to_game2 {
+            bindings = <&to 9>;
+            key-positions = <20 4>;
+        };
+
+        l_back {
+            bindings = <&kp C_AC_BACK>;
+            key-positions = <0 1>;
+        };
+
+        nogaming {
+            bindings = <&to 0>;
+            key-positions = <5 9>;
+        };
+    };
+
+    behaviors {
+        td_screen: td_screen {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_SCREEN";
+            #binding-cells = <0>;
+            bindings = <&kp C_MENU>, <&kp PRINTSCREEN>;
+        };
+
+        qt_cln: qt_cln {
+            compatible = "zmk,behavior-mod-morph";
+            label = "QT_CLN";
+            bindings = <&kp SQT>, <&kp SEMICOLON>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_RCTL|MOD_LCTL)>;
+        };
+
+        bkslh_pipe: bkslh_pipe {
+            compatible = "zmk,behavior-mod-morph";
+            label = "BKSLH_PIPE";
+            bindings = <&kp SLASH>, <&kp BACKSLASH>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_RCTL|MOD_LCTL)>;
+        };
+
+        alt_holdtap: alt_holdtap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ALT_HOLDTAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        nbmr_wrd: nbmr_wrd {
+            compatible = "zmk,behavior-caps-word";
+            label = "NBMR_WRD";
+            #binding-cells = <0>;
+            continue-list = <NUMBER_0 NUMBER_9 NUMBER_8 NUMBER_7 NUMBER_4 NUMBER_5 NUMBER_6 NUMBER_1 NUMBER_2 NUMBER_3 MINUS PLUS SLASH ASTERISK DOT>;
+        };
+
+        nmbr_tap: nmbr_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NMBR_TAP";
+            bindings = <&mo>, <&nmbr_toggle>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        tap_hold_key: tap_hold_key {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_HOLD_KEY";
+            bindings = <&kp>, <&mkp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        urob_hrm: urob_hrm {
+            compatible = "zmk,behavior-hold-tap";
+            label = "UROB_HRM";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <175>;
+            hold-trigger-on-release;
+            flavor = "balanced";
+            hold-while-undecided;
+        };
+
+        spc_flip: spc_flip {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SPC_FLIP";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            flavor = "tap-preferred";
+        };
+
+        hold_sticky: hold_sticky {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_STICKY";
+            bindings = <&mo>, <&sticky_shift>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <120>;
+            flavor = "balanced";
+        };
+
+        sticky_shift: sticky_shift {
+            compatible = "zmk,behavior-sticky-key";
+            label = "STICKY_SHIFT";
+            bindings = <&kp>;
+            #binding-cells = <1>;
+            release-after-ms = <500>;
+            quick-release;
+            ignore-modifiers;
+        };
+    };
+
+    macros {
+        nmbr_toggle: nmbr_toggle {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap_time 1000>,
+                <&tog 6>,
+                <&macro_release>,
+                <&tog 6>;
+
+            label = "NMBR_TOGGLE";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+
+            bindings = <
+  &alt_holdtap LEFT_GUI Q  &lt 10 W  &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
+  &lt 7 A                  &lt 6 S   &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+  &kp Z                    &kp X     &kp C                    &kp V                   &kp B                &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
+                                     &lt 8 C_PP               &lt 4 TAB               &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+            >;
+        };
+
+        game {
+            bindings = <
+  &lt 0 ESCAPE  &kp Q  &kp W  &kp E           &kp R        &trans  &trans  &trans  &trans  &trans
+  &lt 4 TAB     &kp A  &kp S  &kp D           &kp F        &trans  &trans  &trans  &trans  &trans
+  &kp LCTRL     &kp Z  &kp X  &kp C           &kp V        &trans  &trans  &trans  &trans  &trans
+                       &mo 7  &kp LEFT_SHIFT  &kp SPACE    &mo 0   &trans  &trans
+            >;
+        };
+
+        NAV2 {
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &kp PAGE_UP  &kp HOME  &kp UP    &kp END    &trans
+  &trans  &trans  &trans  &trans  &trans    &kp PG_DN    &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans       &trans    &trans    &trans     &trans
+                  &trans  &trans  &trans    &trans       &trans    &trans
+            >;
+        };
+
+        SYM2 {
+            bindings = <
+  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS       &kp PLUS
+  &kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE  &kp EQUAL
+  &kp N1           &kp N2       &kp N3          &kp N4      &kp N5                  &kp N6                 &kp N7         &kp N8           &kp N9          &kp N0
+                                &trans          &trans      &trans                  &trans                 &trans         &trans
+            >;
+        };
+
+        FLIP {
+            bindings = <
+  &kp P      &kp O       &kp I           &kp U             &kp Y          &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc SCRL_UP
+  &kp LS(J)  &kp L       &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN
+  &kp SLASH  &kp PERIOD  &kp COMMA       &kp M             &kp N          &trans  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
+                         &trans          &trans            &trans         &trans  &trans          &trans
+            >;
+        };
+
+        FN+BT {
+            bindings = <
+  &kp F1         &kp F2         &kp F3  &kp F4  &kp F5            &kp F6   &kp F7  &kp F8  &kp F9  &kp F10
+  &bt BT_SEL 0   &bt BT_SEL 1   &trans  &trans  &kp F11           &kp F12  &trans  &trans  &trans  &trans
+  &bt BT_DISC 0  &bt BT_DISC 2  &trans  &trans  &bt BT_CLR_ALL    &trans   &trans  &trans  &trans  &trans
+                                &trans  &trans  &trans            &trans   &trans  &trans
+            >;
+        };
+
+        NUM {
+            bindings = <
+  &kp SLASH  &kp ASTERISK       &kp N7     &kp N8      &kp N9    &trans  &trans  &trans  &trans  &trans
+  &kp PLUS   &kp RIGHT_BRACKET  &kp N4     &kp N5      &kp N6    &trans  &trans  &trans  &trans  &trans
+  &kp SLASH  &kp LEFT_BRACKET   &kp N1     &kp N2      &kp N3    &trans  &trans  &trans  &trans  &trans
+                                &kp MINUS  &kp PERIOD  &kp N0    &trans  &trans  &trans
+            >;
+
+            label = "SL";
+        };
+
+        NAV_L {
+            bindings = <
+  &trans  &kp Q         &kp UP    &kp E      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
+  &trans  &kp LEFT      &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
+  &trans  &kp NUMBER_1  &kp N2    &kp N3     &kp N4               &trans  &trans  &trans  &trans  &trans
+                        &trans    &trans     &trans               &trans  &trans  &trans
+            >;
+        };
+
+        fuckass {
+            bindings = <
+  &kp F1         &kp F2          &kp F3             &kp F4           &kp F5        &trans  &trans  &trans  &trans  &trans
+  &kp LG(S)      &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
+  &kp C_AC_BACK  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
+                                 &trans             &trans           &trans        &trans  &trans  &trans
+            >;
+        };
+
+        GAME2 {
+            bindings = <
+  &kp Q    &kp E  &kp W      &kp R                   &kp T        &kp Y   &kp U   &kp I      &kp O    &kp P
+  &kp F    &kp A  &kp S      &kp D                   &kp G        &kp H   &kp J   &kp K      &kp L    &kp SEMI
+  &lt 6 Z  &kp X  &kp C      &kp V                   &kp B        &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
+                  &kp LCTRL  &alt_holdtap LSHFT TAB  &kp SPACE    &trans  &trans  &trans
+            >;
+        };
+
+        draw {
+            bindings = <
+  &trans  &trans  &kp LEFT_BRACKET  &trans     &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans            &kp LC(H)  &kp LC(G)            &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans            &trans     &trans               &trans  &trans  &trans  &trans  &trans
+                  &trans            &trans     &trans               &trans  &trans  &trans
+            >;
+        };
+
+        mouse {
+            // Holding TAB switches the trackball to volume mode (layer 13),
+            // holding SPACE switches it to scroll mode (layer 12). See
+            // &trackball_listener above.
+            bindings = <
+  &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &mkp MB3  &tap_hold_key RC(LSHFT) MB2  &mkp MB1    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
+                  &trans    &mo 13                       &mo 12      &trans  &trans  &trans
+            >;
+        };
+
+        scroll {
+            // Momentary layer only used as a gate for &trackball_listener's
+            // scroll_layer override - deliberately transparent otherwise.
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        volume {
+            // Momentary layer only used as a gate for &trackball_listener's
+            // volume_layer override - deliberately transparent otherwise.
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans  &trans    &trans  &trans  &trans
+            >;
         };
     };
 };

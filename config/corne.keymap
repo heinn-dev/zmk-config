@@ -3,8 +3,25 @@
  *
  * SPDX-License-Identifier: MIT
  *
- * Real keymap content lives in corne_shared.dtsi so it can also be used by
- * corne_dongle.keymap, since the dongle is now the actual central.
+ * corne_left/corne_right are peripherals now (the dongle is the central),
+ * so ZMK never actually compiles/consults their own keymap resolution at
+ * runtime - only the central's (config/corne_dongle.keymap) matters. This
+ * file is a trivial, self-contained placeholder purely to satisfy the
+ * build (every board needs *a* valid zmk,keymap node to compile).
+ *
+ * Edit the real keymap in config/corne_dongle.keymap instead - and select
+ * "corne_dongle" (not corne_left/corne_right) in tools like nickcoutsos's
+ * keymap editor.
  */
 
-#include "corne_shared.dtsi"
+#include <behaviors.dtsi>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <&none>;
+        };
+    };
+};
