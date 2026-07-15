@@ -82,7 +82,7 @@
 / {
     /* Relays raw motion to the dongle (central), which has its own,
      * separately-defined instance of this node (same reg value) wired up
-     * to &trackball_listener - see config/corne_dongle.keymap. Devicetree
+     * to &trackball_listener - see config/corne.keymap. Devicetree
      * includes don't reach across shield folders, so this small node is
      * duplicated there rather than shared via a common file. */
     split_inputs {
