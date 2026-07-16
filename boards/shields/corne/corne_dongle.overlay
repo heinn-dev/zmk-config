@@ -76,11 +76,11 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
     codes = <INPUT_REL_X INPUT_REL_Y>;
-    sensitivity = <1500>;         /* 1.5x base speed */
-    min-factor = <700>;           /* 0.7x when moving slowly (precision) */
-    max-factor = <3000>;          /* 3.0x at high velocity */
+    sensitivity = <1100>;         /* 1.5x base speed */
+    min-factor = <500>;           /* 0.7x when moving slowly (precision) */
+    max-factor = <2200>;          /* 3.0x at high velocity */
     acceleration-exponent = <2>;  /* mild exponential curve */
-    speed-threshold = <400>;      /* counts/sec where boost starts */
+    speed-threshold = <500>;      /* counts/sec where boost starts */
     speed-max = <3000>;           /* counts/sec where max-factor is reached */
     y-boost = <1000>;             /* no Y bias (module default is a sneaky 1.2x) */
     sensor-dpi = <600>;           /* matches cpi = <600> on the trackball */
