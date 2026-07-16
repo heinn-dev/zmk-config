@@ -258,64 +258,64 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &alt_holdtap LEFT_GUI Q  &lt 10 W  &kp E                    &kp R                   &kp T                &kp Y            &kp U         &kp I                     &kp O                     &kp P
-  &lt 7 A                  &lt 6 S   &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G    &mt RCTRL H      &mt LSHFT J   &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-  &kp Z                    &kp X     &kp C                    &kp V                   &kp B                &kp N            &kp M         &kp COMMA                 &kp PERIOD                &bkslh_pipe
-                                     &lt 8 C_PP               &lt 4 TAB               &kp SPACE            &lt 2 BACKSPACE  &lt 3 DELETE  &lt 5 PRINTSCREEN
+&alt_holdtap LEFT_GUI Q  &kp W      &lt 10 E                 &kp R                   &kp T              &kp Y              &kp U        &kp I                     &kp O                     &kp P
+&lt 7 A                  &lt 6 S    &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G  &mt RCTRL H        &mt LSHFT J  &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+&kp Z                    &kp X      &kp C                    &kp V                   &kp B              &kp N              &kp M        &kp COMMA                 &kp PERIOD                &bkslh_pipe
+&lt 8 C_PP               &lt 4 TAB  &kp SPACE                &lt 2 BACKSPACE         &lt 3 DELETE       &lt 5 PRINTSCREEN
             >;
         };
 
         game {
             bindings = <
-  &lt 0 ESCAPE  &kp Q  &kp W  &kp E           &kp R        &trans  &trans  &trans  &trans  &trans
-  &lt 4 TAB     &kp A  &kp S  &kp D           &kp F        &trans  &trans  &trans  &trans  &trans
-  &kp LCTRL     &kp Z  &kp X  &kp C           &kp V        &trans  &trans  &trans  &trans  &trans
-                       &mo 7  &kp LEFT_SHIFT  &kp SPACE    &mo 0   &trans  &trans
+&lt 0 ESCAPE  &kp Q           &kp W      &kp E  &kp R   &trans  &trans  &trans  &trans  &trans
+&lt 4 TAB     &kp A           &kp S      &kp D  &kp F   &trans  &trans  &trans  &trans  &trans
+&kp LCTRL     &kp Z           &kp X      &kp C  &kp V   &trans  &trans  &trans  &trans  &trans
+&mo 7         &kp LEFT_SHIFT  &kp SPACE  &mo 0  &trans  &trans
             >;
         };
 
         NAV2 {
             bindings = <
-  &trans  &trans  &trans  &trans  &trans    &kp PAGE_UP  &kp HOME  &kp UP    &kp END    &trans
-  &trans  &trans  &trans  &trans  &trans    &kp PG_DN    &kp LEFT  &kp DOWN  &kp RIGHT  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans       &trans    &trans    &trans     &trans
-                  &trans  &trans  &trans    &trans       &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &kp PAGE_UP  &kp HOME  &kp UP    &kp END    &trans
+&trans  &trans  &trans  &trans  &trans  &kp PG_DN    &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans    &trans    &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         SYM2 {
             bindings = <
-  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT             &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS       &kp PLUS
-  &kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS    &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE  &kp EQUAL
-  &kp N1           &kp N2       &kp N3          &kp N4      &kp N5                  &kp N6                 &kp N7         &kp N8           &kp N9          &kp N0
-                                &trans          &trans      &trans                  &trans                 &trans         &trans
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH        &kp DOLLAR  &kp PERCENT           &kp CARET              &kp AMPERSAND  &kp ASTERISK     &kp MINUS       &kp PLUS
+&kp GRAVE        &kp TILDE    &kp LEFT_BRACE  &kp LBKT    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp RBKT       &kp RIGHT_BRACE  &kp UNDERSCORE  &kp EQUAL
+&kp N1           &kp N2       &kp N3          &kp N4      &kp N5                &kp N6                 &kp N7         &kp N8           &kp N9          &kp N0
+&trans           &trans       &trans          &trans      &trans                &trans
             >;
         };
 
         FLIP {
             bindings = <
-  &kp P      &kp O       &kp I           &kp U             &kp Y          &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc SCRL_UP
-  &kp LS(J)  &kp L       &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN
-  &kp SLASH  &kp PERIOD  &kp COMMA       &kp M             &kp N          &trans  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
-                         &trans          &trans            &trans         &trans  &trans          &trans
+&kp P      &kp O       &kp I           &kp U             &kp Y        &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc SCRL_UP
+&kp LS(J)  &kp L       &mt LEFT_ALT K  &mt LEFT_SHIFT J  &mt LCTRL H  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN
+&kp SLASH  &kp PERIOD  &kp COMMA       &kp M             &kp N        &trans  &mkp MB4        &mkp MCLK       &mkp MB5         &trans
+&trans     &trans      &trans          &trans            &trans       &trans
             >;
         };
 
         FN+BT {
             bindings = <
-  &kp F1         &kp F2         &kp F3  &kp F4  &kp F5            &kp F6   &kp F7  &kp F8  &kp F9  &kp F10
-  &bt BT_SEL 0   &bt BT_SEL 1   &trans  &trans  &kp F11           &kp F12  &trans  &trans  &trans  &trans
-  &bt BT_DISC 0  &bt BT_DISC 2  &trans  &trans  &bt BT_CLR_ALL    &trans   &trans  &trans  &trans  &trans
-                                &trans  &trans  &trans            &trans   &trans  &trans
+&kp F1         &kp F2         &kp F3  &kp F4  &kp F5          &kp F6   &kp F7  &kp F8  &kp F9  &kp F10
+&bt BT_SEL 0   &bt BT_SEL 1   &trans  &trans  &kp F11         &kp F12  &trans  &trans  &trans  &trans
+&bt BT_DISC 0  &bt BT_DISC 2  &trans  &trans  &bt BT_CLR_ALL  &trans   &trans  &trans  &trans  &trans
+&trans         &trans         &trans  &trans  &trans          &trans
             >;
         };
 
         NUM {
             bindings = <
-  &kp SLASH  &kp ASTERISK       &kp N7     &kp N8      &kp N9    &trans  &trans  &trans  &trans  &trans
-  &kp PLUS   &kp RIGHT_BRACKET  &kp N4     &kp N5      &kp N6    &trans  &trans  &trans  &trans  &trans
-  &kp SLASH  &kp LEFT_BRACKET   &kp N1     &kp N2      &kp N3    &trans  &trans  &trans  &trans  &trans
-                                &kp MINUS  &kp PERIOD  &kp N0    &trans  &trans  &trans
+&kp SLASH  &kp ASTERISK       &kp N7  &kp N8  &kp N9  &trans  &trans  &trans  &trans  &trans
+&kp PLUS   &kp RIGHT_BRACKET  &kp N4  &kp N5  &kp N6  &trans  &trans  &trans  &trans  &trans
+&kp SLASH  &kp LEFT_BRACKET   &kp N1  &kp N2  &kp N3  &trans  &trans  &trans  &trans  &trans
+&kp MINUS  &kp PERIOD         &kp N0  &trans  &trans  &trans
             >;
 
             label = "SL";
@@ -323,37 +323,37 @@
 
         NAV_L {
             bindings = <
-  &trans  &kp Q         &kp UP    &kp E      &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
-  &trans  &kp LEFT      &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET     &trans  &trans  &trans  &trans  &trans
-  &trans  &kp NUMBER_1  &kp N2    &kp N3     &kp N4               &trans  &trans  &trans  &trans  &trans
-                        &trans    &trans     &trans               &trans  &trans  &trans
+&trans  &kp Q         &kp UP    &kp E      &kp RIGHT_BRACKET  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT      &kp DOWN  &kp RIGHT  &kp LEFT_BRACKET   &trans  &trans  &trans  &trans  &trans
+&trans  &kp NUMBER_1  &kp N2    &kp N3     &kp N4             &trans  &trans  &trans  &trans  &trans
+&trans  &trans        &trans    &trans     &trans             &trans
             >;
         };
 
         fuckass {
             bindings = <
-  &kp F1         &kp F2          &kp F3             &kp F4           &kp F5        &trans  &trans  &trans  &trans  &trans
-  &kp LG(S)      &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)     &trans  &trans  &trans  &trans  &trans
-  &kp C_AC_BACK  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &trans  &trans  &trans  &trans  &trans
-                                 &trans             &trans           &trans        &trans  &trans  &trans
+&kp F1         &kp F2          &kp F3             &kp F4           &kp F5      &trans  &trans  &trans  &trans  &trans
+&kp LG(S)      &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)   &trans  &trans  &trans  &trans  &trans
+&kp C_AC_BACK  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT  &trans  &trans  &trans  &trans  &trans
+&trans         &trans          &trans             &trans           &trans      &trans
             >;
         };
 
         GAME2 {
             bindings = <
-  &kp Q    &kp E  &kp W      &kp R                   &kp T        &kp Y   &kp U   &kp I      &kp O    &kp P
-  &kp F    &kp A  &kp S      &kp D                   &kp G        &kp H   &kp J   &kp K      &kp L    &kp SEMI
-  &lt 6 Z  &kp X  &kp C      &kp V                   &kp B        &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
-                  &kp LCTRL  &alt_holdtap LSHFT TAB  &kp SPACE    &trans  &trans  &trans
+&kp Q      &kp E                   &kp W      &kp R   &kp T   &kp Y   &kp U  &kp I      &kp O    &kp P
+&kp F      &kp A                   &kp S      &kp D   &kp G   &kp H   &kp J  &kp K      &kp L    &kp SEMI
+&lt 6 Z    &kp X                   &kp C      &kp V   &kp B   &kp N   &kp M  &kp COMMA  &kp DOT  &kp FSLH
+&kp LCTRL  &alt_holdtap LSHFT TAB  &kp SPACE  &trans  &trans  &trans
             >;
         };
 
         draw {
             bindings = <
-  &trans  &trans  &kp LEFT_BRACKET  &trans     &kp RIGHT_BRACKET    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans            &kp LC(H)  &kp LC(G)            &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans            &trans     &trans               &trans  &trans  &trans  &trans  &trans
-                  &trans            &trans     &trans               &trans  &trans  &trans
+&trans  &trans  &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp LC(H)         &kp LC(G)          &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans            &trans             &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans            &trans             &trans
             >;
         };
 
@@ -362,33 +362,36 @@
             // in boards/shields/corne/corne_dongle.overlay). Holding TAB
             // switches the trackball to volume mode (layer 13), holding
             // SPACE switches it to scroll mode (layer 12).
+
             bindings = <
-  &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &mkp MB3  &tap_hold_key RC(LSHFT) MB2  &mkp MB1    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans    &trans                       &trans      &trans  &trans  &trans  &trans  &trans
-                  &trans    &mo 13                       &mo 12      &trans  &trans  &trans
+&trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans
+&mo 13  &trans  &mo 12    &trans    &trans    &trans
             >;
         };
 
         scroll {
             // Momentary layer only used as a gate for &trackball_listener's
             // scroll_layer override - deliberately transparent otherwise.
+
             bindings = <
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                  &trans  &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         volume {
             // Momentary layer only used as a gate for &trackball_listener's
             // volume_layer override - deliberately transparent otherwise.
+
             bindings = <
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                  &trans  &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
