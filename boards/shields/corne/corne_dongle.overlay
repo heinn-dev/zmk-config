@@ -70,14 +70,20 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
 
 /* Pointer acceleration (nuovotaka/zmk-pointing-acceleration-alpha,
  * community module - not an official ZMK feature). Enabled via
- * config/corne_dongle.conf. */
+ * config/corne_dongle.conf, as Level 2 "Standard": unlike Level 1 it
+ * supports min-factor < 1.0, i.e. slow movements get *damped* for
+ * precision while fast ones get boosted. */
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
     codes = <INPUT_REL_X INPUT_REL_Y>;
-    sensitivity = <1500>;  /* 1.5x base speed */
-    max-factor = <2000>;   /* 2.0x max speed boost at high velocity */
-    curve-type = <1>;      /* Mild curve */
-    sensor-dpi = <600>;    /* matches cpi = <600> on the trackball */
+    sensitivity = <1500>;         /* 1.5x base speed */
+    min-factor = <700>;           /* 0.7x when moving slowly (precision) */
+    max-factor = <3000>;          /* 3.0x at high velocity */
+    acceleration-exponent = <2>;  /* mild exponential curve */
+    speed-threshold = <400>;      /* counts/sec where boost starts */
+    speed-max = <3000>;           /* counts/sec where max-factor is reached */
+    y-boost = <1000>;             /* no Y bias (module default is a sneaky 1.2x) */
+    sensor-dpi = <600>;           /* matches cpi = <600> on the trackball */
 };
 
 / {
@@ -96,14 +102,16 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
     };
 
     /* Watches trackball Y motion while the "volume" layer (13) is held and
-     * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement. If up
-     * and down feel swapped, swap the two &kp bindings below. */
+     * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement, at
+     * most one tap per tap-interval-ms. If up and down feel swapped, swap
+     * the two &kp bindings below. */
     trackball_volume_ticker: trackball_volume_ticker {
         compatible = "zmk,input-processor-axis-behaviors";
         #input-processor-cells = <0>;
         type = <INPUT_EV_REL>;
         code = <INPUT_REL_Y>;
         tick = <20>;
+        tap-interval-ms = <40>; /* max 25 volume steps/sec */
         bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
     };
 
@@ -120,7 +128,11 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
 
         scroll_layer {
             layers = <12>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            /* Vertical scroll only: X is zeroed (scaled by 0/1) before the
+             * mapper so ball sideways-drift can't scroll horizontally. If a
+             * dedicated horizontal-scroll hold is ever wanted, give it its
+             * own gate layer that zeroes Y instead. */
+            input-processors = <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>;
         };
 
         volume_layer {

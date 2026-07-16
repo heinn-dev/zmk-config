@@ -24,6 +24,13 @@ properties:
     type: int
     required: true
     description: Accumulated magnitude of movement required to trigger one tap.
+  tap-interval-ms:
+    type: int
+    default: 40
+    description: |
+      Minimum time between taps, which caps the tap rate no matter how fast
+      the axis moves (40 = at most 25 taps/sec). Taps run deferred on the
+      system workqueue; never invoke behaviors from the input path directly.
   bindings:
     type: phandle-array
     required: true
