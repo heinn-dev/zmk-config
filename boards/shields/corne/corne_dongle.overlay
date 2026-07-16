@@ -86,6 +86,18 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
     sensor-dpi = <600>;           /* matches cpi = <600> on the trackball */
 };
 
+/* Positions that must NOT cancel the mouse layer when pressed (see
+ * excluded-positions below): the mouse buttons the mouse layer itself maps
+ * (2-4 = MB3/MB2/MB1), its volume/scroll sub-mode thumb keys (30, 32), and
+ * the left-hand Shift/Ctrl home-row mods (13 = Shift on F, 14 = Ctrl on G)
+ * so shift-click/ctrl-click and ctrl-scroll keep working - holding one and
+ * then moving the trackball resolves to that modifier plus the mouse
+ * layer. Pressing any other key (including the right-hand H/J Ctrl/Shift)
+ * cancels the mouse layer immediately. */
+&zip_temp_layer {
+    excluded-positions = <2 3 4 13 14 30 31 32>;
+};
+
 / {
     /* Receives motion relayed from the trackball peripheral, which has its
      * own, separately-defined instance of this node (same reg value).
@@ -116,9 +128,10 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
     };
 
     /* Auto-activate the mouse layer (11) on trackball movement, deactivate
-     * after 500ms of no movement, and apply pointer acceleration to cursor
-     * movement. While the mouse layer is up, holding SPACE (-> layer 12)
-     * scrolls instead of moving the cursor and holding TAB (-> layer 13)
+     * after 500ms of no movement, or immediately on any non-excluded key
+     * press (see excluded-positions above). Apply pointer acceleration to
+     * cursor movement. While the mouse layer is up, holding SPACE (-> layer
+     * 12) scrolls instead of moving the cursor and holding TAB (-> layer 13)
      * adjusts volume instead - see the mouse/scroll/volume layers in
      * config/corne.keymap. */
     trackball_listener: trackball_listener {
@@ -131,13 +144,19 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
             /* Vertical scroll only: X is zeroed (scaled by 0/1) before the
              * mapper so ball sideways-drift can't scroll horizontally. If a
              * dedicated horizontal-scroll hold is ever wanted, give it its
-             * own gate layer that zeroes Y instead. */
-            input-processors = <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>;
+             * own gate layer that zeroes Y instead. Direction is inverted
+             * and sensitivity trimmed to 0.9x (scaled -9/10) after the
+             * mapper turns the motion into wheel events. */
+            input-processors = <&zip_x_scaler 0 1>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler -9 10>;
         };
 
         volume_layer {
             layers = <13>;
-            input-processors = <&trackball_volume_ticker>;
+            /* X is zeroed (scaled by 0/1) the same way scroll_layer does -
+             * otherwise diagonal ball drift while adjusting volume leaks
+             * through as cursor movement, since the ticker below only
+             * consumes the Y axis. */
+            input-processors = <&zip_x_scaler 0 1>, <&trackball_volume_ticker>;
         };
     };
 };
