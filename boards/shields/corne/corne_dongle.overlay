@@ -124,7 +124,7 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
         code = <INPUT_REL_Y>;
         tick = <20>;
         tap-interval-ms = <40>; /* max 25 volume steps/sec */
-        bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
+        bindings = <&kp C_VOLUME_UP>, <&kp C_VOLUME_DOWN>;
     };
 
     /* Auto-activate the mouse layer (11) on trackball movement, deactivate
