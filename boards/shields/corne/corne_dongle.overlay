@@ -79,8 +79,8 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
     sensitivity = <1000>;         /* 1.5x base speed */
     min-factor = <400>;           /* 0.7x when moving slowly (precision) */
     max-factor = <2200>;          /* 3.0x at high velocity */
-    acceleration-exponent = <3>;  /* mild exponential curve */
-    speed-threshold = <700>;      /* counts/sec where boost starts */
+    acceleration-exponent = <2>;  /* mild exponential curve */
+    speed-threshold = <800>;      /* counts/sec where boost starts */
     speed-max = <3000>;           /* counts/sec where max-factor is reached */
     y-boost = <1000>;             /* no Y bias (module default is a sneaky 1.2x) */
     sensor-dpi = <600>;           /* matches cpi = <600> on the trackball */
@@ -133,12 +133,16 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
      * cursor movement. While the mouse layer is up, holding SPACE (-> layer
      * 12) scrolls instead of moving the cursor, holding the C_PP thumb key
      * (-> layer 13) adjusts volume instead, and holding TAB (-> layer 14)
-     * halves cursor speed for precision - see the mouse/scroll/volume/
-     * precision layers in config/corne.keymap. */
+     * doubles cursor speed for zippy movement (default movement is precise,
+     * halved) - see the mouse/scroll/volume/zippy layers in
+     * config/corne.keymap. */
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
-        input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>;
+        /* Default movement is precise: final accelerated output is halved
+         * (scaled by 1/2). Holding TAB (-> layer 14, zippy_layer below)
+         * overrides this with full, unscaled speed. */
+        input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>, <&zip_xy_scaler 1 2>;
 
         scroll_layer {
             layers = <12>;
@@ -160,16 +164,16 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
             input-processors = <&zip_x_scaler 0 1>, <&trackball_volume_ticker>;
         };
 
-        precision_layer {
+        zippy_layer {
             layers = <14>;
-            /* Precision mode (held via TAB, see the mouse layer in
+            /* Zippy mode (held via TAB, see the mouse layer in
              * config/corne.keymap): same auto-layer-maintenance and
-             * acceleration pipeline as normal movement, but the final
-             * accelerated output is halved (scaled by 1/2). Layer overrides
-             * replace the base input-processors entirely rather than
-             * running alongside them, so &zip_temp_layer and &pointer_accel
-             * are repeated here rather than inherited. */
-            input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>, <&zip_xy_scaler 1 2>;
+             * acceleration pipeline as default movement, but without the
+             * 1/2 scaler - full, unhalved speed. Layer overrides replace
+             * the base input-processors entirely rather than running
+             * alongside them, so &zip_temp_layer and &pointer_accel are
+             * repeated here rather than inherited. */
+            input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>;
         };
     };
 };

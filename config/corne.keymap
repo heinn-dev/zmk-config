@@ -363,7 +363,8 @@
             // C_PP thumb key (position 30) switches the trackball to volume
             // mode (layer 13), holding SPACE (position 32) switches it to
             // scroll mode (layer 12), and holding TAB (position 31)
-            // switches it to precision mode (layer 14, half speed).
+            // switches it to zippy mode (layer 14, full speed - default
+            // movement is precise, half speed).
 
             bindings = <
 &trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans  &trans  &trans  &trans  &trans
@@ -397,9 +398,9 @@
             >;
         };
 
-        precision {
+        zippy {
             // Momentary layer only used as a gate for &trackball_listener's
-            // precision_layer override - deliberately transparent otherwise.
+            // zippy_layer override - deliberately transparent otherwise.
 
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
