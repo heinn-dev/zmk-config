@@ -347,8 +347,8 @@
             // Auto-activated by trackball movement (see &trackball_listener
             // in boards/shields/corne/corne_dongle.overlay). Holding the
             // C_PP thumb key (position 30) switches the trackball to volume
-            // mode (layer 13), holding SPACE (position 32) switches it to
-            // scroll mode (layer 12), and holding TAB (position 31)
+            // mode (layer 12), holding SPACE (position 32) switches it to
+            // scroll mode (layer 11), and holding TAB (position 31)
             // switches it to zippy mode (layer 14, full speed - default
             // movement is precise, half speed).
 
@@ -356,7 +356,7 @@
 &trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans
-&mo 12  &trans  &mo 11    &trans    &trans    &trans
+&mo 12  &mo 14  &mo 11    &trans    &trans    &trans
             >;
         };
 
@@ -390,6 +390,21 @@
 &trans  &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans        &trans  &trans  &trans  &trans
+            >;
+        };
+
+        zippy {
+            // Momentary layer only used as a gate for &trackball_listener's
+            // zippy_layer override - deliberately transparent otherwise.
+            // Kept LAST on purpose: everything above keeps its index, and
+            // the listener in boards/shields/corne/corne_dongle.overlay
+            // hardcodes these layer numbers.
+
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };

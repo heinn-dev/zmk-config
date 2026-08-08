@@ -113,7 +113,7 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
         };
     };
 
-    /* Watches trackball Y motion while the "volume" layer (13) is held and
+    /* Watches trackball Y motion while the "volume" layer (12) is held and
      * taps C_VOLUME_DOWN/UP once per `tick` of accumulated movement, at
      * most one tap per tap-interval-ms. If up and down feel swapped, swap
      * the two &kp bindings below. */
@@ -127,25 +127,32 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
         bindings = <&kp C_VOLUME_UP>, <&kp C_VOLUME_DOWN>;
     };
 
-    /* Auto-activate the mouse layer (11) on trackball movement, deactivate
-     * after 500ms of no movement, or immediately on any non-excluded key
+    /* Auto-activate the mouse layer (10) on trackball movement, deactivate
+     * after 600ms of no movement, or immediately on any non-excluded key
      * press (see excluded-positions above). Apply pointer acceleration to
      * cursor movement. While the mouse layer is up, holding SPACE (-> layer
-     * 12) scrolls instead of moving the cursor, holding the C_PP thumb key
-     * (-> layer 13) adjusts volume instead, and holding TAB (-> layer 14)
-     * doubles cursor speed for zippy movement (default movement is precise,
-     * halved) - see the mouse/scroll/volume/zippy layers in
-     * config/corne.keymap. */
+     * 11) scrolls instead of moving the cursor, holding the C_PP thumb key
+     * (-> layer 12) adjusts volume instead, and holding TAB (-> layer 14)
+     * doubles cursor speed for zippy movement (default movement is
+     * precise, halved) - see the mouse/scroll/volume/zippy layers in
+     * config/corne.keymap.
+     *
+     * !! The layer NUMBERS below must match config/corne.keymap's layer
+     * ORDER. keymap-editor renumbers bindings inside the keymap when
+     * layers are added/removed, but it does not know this file exists -
+     * after any layer add/delete, re-check these against the keymap or
+     * the auto mouse layer silently stops working (cursor keeps moving,
+     * mouse buttons/scroll/volume go dead). */
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
         /* Default movement is precise: final accelerated output is halved
          * (scaled by 1/2). Holding TAB (-> layer 14, zippy_layer below)
          * overrides this with full, unscaled speed. */
-        input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>, <&zip_xy_scaler 1 2>;
+        input-processors = <&zip_temp_layer 10 600>, <&pointer_accel>, <&zip_xy_scaler 1 2>;
 
         scroll_layer {
-            layers = <12>;
+            layers = <11>;
             /* Vertical scroll only: X is zeroed (scaled by 0/1) before the
              * mapper so ball sideways-drift can't scroll horizontally. If a
              * dedicated horizontal-scroll hold is ever wanted, give it its
@@ -156,7 +163,7 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
         };
 
         volume_layer {
-            layers = <13>;
+            layers = <12>;
             /* X is zeroed (scaled by 0/1) the same way scroll_layer does -
              * otherwise diagonal ball drift while adjusting volume leaks
              * through as cursor movement, since the ticker below only
@@ -173,7 +180,7 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
              * the base input-processors entirely rather than running
              * alongside them, so &zip_temp_layer and &pointer_accel are
              * repeated here rather than inherited. */
-            input-processors = <&zip_temp_layer 11 600>, <&pointer_accel>;
+            input-processors = <&zip_temp_layer 10 600>, <&pointer_accel>;
         };
     };
 };
