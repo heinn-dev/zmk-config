@@ -15,8 +15,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 &mt {
     flavor = "balanced";
@@ -37,7 +37,7 @@
         to_game {
             bindings = <&to 1>;
             key-positions = <4 0>;
-            layers = <0 1>;
+            layers = <0>;
         };
 
         enter_L {
@@ -107,8 +107,9 @@
         };
 
         l_click {
-            bindings = <&mkp LCLK>;
+            bindings = <&kp LC(Z)>;
             key-positions = <3 14>;
+            layers = <0>;
         };
 
         l_back {
@@ -118,7 +119,8 @@
 
         nogaming {
             bindings = <&to 0>;
-            key-positions = <5 9>;
+            key-positions = <0 4>;
+            layers = <1>;
         };
     };
 
@@ -241,6 +243,20 @@
 
             label = "NMBR_TOGGLE";
         };
+
+        sx0: sx0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp S &kp X &kp N0 &kp RET>;
+            label = "SX0";
+        };
+
+        sy0: sy0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp S &kp Y &kp N0 &kp RET>;
+            label = "SY0";
+        };
     };
 
     keymap {
@@ -254,10 +270,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&alt_holdtap LEFT_GUI Q  &kp W      &lt 9 E                  &kp R                   &kp T              &kp Y              &kp U        &kp I                     &kp O                     &kp P
-&lt 7 A                  &lt 6 S    &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G  &mt RCTRL H        &mt LSHFT J  &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-&kp Z                    &kp X      &kp C                    &kp V                   &kp B              &kp N              &kp M        &kp COMMA                 &kp PERIOD                &bkslh_pipe
-&lt 8 C_PP               &lt 4 TAB  &kp SPACE                &lt 2 BACKSPACE         &lt 3 DELETE       &lt 5 PRINTSCREEN
+&alt_holdtap LEFT_GUI Q  &kp W      &lt 9 E                  &lt 15 R                &kp T              &kp Y                      &kp U        &kp I                     &kp O                     &kp P
+&lt 7 A                  &lt 6 S    &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G  &mt RCTRL H                &mt LSHFT J  &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
+&kp Z                    &kp X      &kp C                    &kp V                   &kp B              &kp N                      &kp M        &kp COMMA                 &kp PERIOD                &bkslh_pipe
+&lt 8 C_PP               &lt 4 TAB  &kp SPACE                &lt 2 BACKSPACE         &lt 3 DELETE       &hold_sticky 5 LEFT_SHIFT
             >;
         };
 
@@ -328,10 +344,10 @@
 
         fuckass {
             bindings = <
-&kp F1         &kp F2          &kp F3             &kp F4           &kp F5      &trans  &trans  &trans  &trans  &trans
-&kp LG(S)      &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)   &trans  &trans  &trans  &trans  &trans
-&kp C_AC_BACK  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT  &trans  &trans  &trans  &trans  &trans
-&trans         &trans          &trans             &trans           &trans      &trans
+&kp F1           &kp F2          &kp F3             &kp F4           &kp F5      &trans  &trans  &trans  &trans  &trans
+&kp PRINTSCREEN  &kp LS(H)       &kp LA(D)          &kp LS(F)        &kp LC(G)   &trans  &trans  &trans  &trans  &trans
+&kp C_AC_BACK    &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT  &trans  &trans  &trans  &trans  &trans
+&trans           &trans          &trans             &trans           &trans      &trans
             >;
         };
 
@@ -406,6 +422,15 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        ctrlz {
+            bindings = <
+&kp LC(Y)  &kp LS(LC(Z))  &kp LC(Z)  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &sx0           &sy0       &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &trans         &trans     &trans  &trans  &trans
             >;
         };
     };
