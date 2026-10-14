@@ -49,6 +49,7 @@
         backspace_l {
             bindings = <&kp BACKSPACE>;
             key-positions = <2 3>;
+            require-prior-idle-ms = <250>;
         };
 
         l_esc {
@@ -77,7 +78,7 @@
 
         num_div {
             bindings = <&kp SLASH>;
-            key-positions = <13 14>;
+            key-positions = <14 13>;
             layers = <6>;
         };
 
@@ -92,6 +93,7 @@
             key-positions = <10 11>;
             layers = <0>;
             timeout-ms = <40>;
+            require-prior-idle-ms = <250>;
         };
 
         l_capsw {
@@ -99,6 +101,7 @@
             key-positions = <20 21>;
             timeout-ms = <40>;
             layers = <0>;
+            require-prior-idle-ms = <250>;
         };
 
         r_click {
@@ -121,6 +124,12 @@
             bindings = <&to 0>;
             key-positions = <0 4>;
             layers = <1>;
+        };
+
+        ctrl_shift {
+            bindings = <&kp LC(LEFT_SHIFT)>;
+            key-positions = <13 14>;
+            layers = <0>;
         };
     };
 
@@ -229,6 +238,15 @@
             quick-release;
             ignore-modifiers;
         };
+
+        ctrl_z_nop: ctrl_z_nop {
+            compatible = "zmk,behavior-mod-morph";
+            label = "CTRL_Z_NOP";
+            bindings = <&kp Z>, <&none>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
     };
 
     macros {
@@ -272,7 +290,7 @@
             bindings = <
 &alt_holdtap LEFT_GUI Q  &kp W      &lt 9 E                  &lt 15 R                &kp T              &kp Y                      &kp U        &kp I                     &kp O                     &kp P
 &lt 7 A                  &lt 6 S    &alt_holdtap LEFT_ALT D  &urob_hrm LEFT_SHIFT F  &urob_hrm LCTRL G  &mt RCTRL H                &mt LSHFT J  &alt_holdtap RIGHT_ALT K  &alt_holdtap RIGHT_WIN L  &qt_cln
-&kp Z                    &kp X      &kp C                    &kp V                   &kp B              &kp N                      &kp M        &kp COMMA                 &kp PERIOD                &bkslh_pipe
+&ctrl_z_nop              &kp X      &kp C                    &kp V                   &kp B              &kp N                      &kp M        &kp COMMA                 &kp PERIOD                &bkslh_pipe
 &lt 8 C_PP               &lt 4 TAB  &kp SPACE                &lt 2 BACKSPACE         &lt 3 DELETE       &hold_sticky 5 LEFT_SHIFT
             >;
         };
